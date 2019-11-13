@@ -1,0 +1,46 @@
+$navHeightPadding:50px;
+$navHeight:44+ $navHeightPadding*2 +30 ;
+
+body
+{
+	margin:$navHeight 0px;
+	font-family: Roboto;
+	color:white;
+	background-color:#181a1b;
+}
+
+#navbar
+{
+	position:fixed;
+	top:0;
+	overflow:hidden;
+	width:100%;
+	padding:$navHeightPadding 10px;
+	background-color: rgba(217,3,3,1);
+	transition:0.8s;
+	& a {
+		font-family:Roboto;
+		transition:0.4s;
+		padding:0px 30px;
+		font-size: 2.3em;
+		text-decoration: none;
+		transition:0.4s;
+		color:white;
+		&:hover{
+			opacity:1 !important;
+			color:black;
+			text-shadow: black 3px 3px 3px;
+		}
+	}
+}
+
+.redBgForm{
+	background-color:rgba(241,43,43,0.46);
+	padding:30px;
+	margin:20px;
+	border-radius:3em;
+}
+
+.maincontent{
+	margin-right:200px; 
+}
