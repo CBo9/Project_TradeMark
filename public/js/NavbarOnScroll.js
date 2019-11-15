@@ -14,3 +14,23 @@ function NavbarOnScroll() {
     document.getElementById("navbar").innerHTML= navLinks;
       }
 } 
+
+function formValidation(){
+  let passwordC = document.getElementById("password1").value;
+  let passwordConfirmation = document.getElementById("password2").value;
+  console.log("password :" + passwordC);
+  console.log("password 2 :"+ passwordConfirmation);
+
+  if(passwordC != passwordConfirmation){
+    document.getElementById("passwordError").innerHTML = "Les mots de passe ne sont pas identiques!"; 
+  }else{
+    document.getElementById("passwordError").innerHTML = ""; 
+  }
+document.getElementById("password1").addEventListener('change',formValidation);
+}
+
+function suubmit(){
+  if(document.getElementById("password1").value == "document.getElementById("password2").value"){
+    return true;
+  }else{return false;}
+}

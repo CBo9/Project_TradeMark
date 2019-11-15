@@ -33,3 +33,30 @@ body {
 
 .maincontent {
   margin-right: 200px; }
+
+input {
+  border: white solid 1px;
+  border-radius: 10px;
+  height: 30px;
+  color: white;
+  background-color: #181a1b;
+  transition: 0.3s;
+  font-weight: bold;
+  padding-left: 10px; }
+  input:focus {
+    box-shadow: 0 0 2em red; }
+
+.inputFileButton {
+  cursor: pointer;
+  border: white solid 2px;
+  background-color: #181a1b;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center; }
+
+#signUpForm {
+  width: 500px;
+  display: grid; }
+  #signUpForm label {
+    margin: 15px; }

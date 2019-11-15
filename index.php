@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+require_once'controller/Controller.php';
+$controller = new Controller();
+
 if(!empty($_GET)){
     extract($_GET);
     if(isset($a)){
@@ -9,7 +12,7 @@ if(!empty($_GET)){
                 require 'view/connection.php';
                 break;
             case 'signUp':
-                require 'view/inscription.php';
+                $controller->signUp();
                 break;
             case 'signOut':
                 $controller->deconnexion();
