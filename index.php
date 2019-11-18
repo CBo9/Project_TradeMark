@@ -11,6 +11,9 @@ if(!empty($_GET)){
             case 'connection':
                 require 'view/connection.php';
                 break;
+            case 'signIn':
+                $controller->signIn();
+                break;
             case 'signUp':
                 $controller->signUp();
                 break;

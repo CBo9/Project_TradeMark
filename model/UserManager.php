@@ -12,7 +12,15 @@ class UserManager extends Manager{
 							"firstName"=>$user->getFirstName(),
 							"lastName"=>$user->getLastName(),
 							"email"=>$user->getEmail(),
-							"password"=>$user->getPassword(),
+							"password"=>password_hash($user->getPassword(), PASSWORD_DEFAULT),
 							"avatar"=>$user->getAvatar()]);
+	}
+
+
+	function userConnect(User $user){
+		$db = $this->dbConnect();
+		$connect = $db->prepare('SELECT * FROM users WHERE nickname = :nickname');
+		$connect->execute(["nickname"=>$user->getNickname()]);
+		return $connect;
 	}
 }

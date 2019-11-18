@@ -17,8 +17,22 @@ class Controller{
 				$user->setAvatar($filename);
 			}
 		}
-		$userManager->newUser($user);
+		$userManager->newUser($user);    
+	}
 
-        
+	function signIn(){
+		$user = new User($_POST);
+		$userManager = new UserManager();
+		$data = $userManager->userConnect($user);
+		if($member = $data->fetch()){
+			if(password_verify($user->getPassword(), $member['password'])){
+				$_SESSION['id'] = $member['id'];
+			}else{
+				$error = "Le mot de passe est incorrect.";
+			}
+		}else{
+			$error = "Cet identifiant n'existe pas.";
+		}
+		require_once'view/connection.php';
 	}
 }

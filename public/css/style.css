@@ -1,9 +1,3 @@
-body {
-  margin: 174px 0px;
-  font-family: Roboto;
-  color: white;
-  background-color: #181a1b; }
-
 #navbar {
   position: fixed;
   top: 0;
@@ -55,8 +49,42 @@ input {
   border-radius: 10px;
   text-align: center; }
 
-#signUpForm {
+#signUpForm, #signInForm {
   width: 500px;
   display: grid; }
-  #signUpForm label {
+  #signUpForm input, #signInForm input {
     margin: 15px; }
+
+#signInForm {
+  align-content: start;
+  height: 100%; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Roboto;
+  color: white;
+  background-color: #181a1b; }
+
+#container {
+  min-height: 100%;
+  position: relative;
+  margin-top: 174px; }
+
+#mainContent {
+  padding: 10px; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background: black;
+  color: white; }
+
+.container-flex {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; }

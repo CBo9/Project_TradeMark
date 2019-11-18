@@ -30,7 +30,7 @@ document.getElementById("password1").addEventListener('change',formValidation);
 }
 
 function suubmit(){
-  if(document.getElementById("password1").value == "document.getElementById("password2").value"){
+  if(document.getElementById("password1").value == document.getElementById("password2").value){
     return true;
   }else{return false;}
 }
