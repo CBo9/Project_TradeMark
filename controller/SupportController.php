@@ -13,4 +13,15 @@ class SupportController{
 		$supportManager = new SupportManager();
 		$supportManager->newRequest($request);
 	}
+
+	function viewRequest($reqId){
+		$supportManager = new SupportManager();
+		$result = $supportManager->getRequest($reqId);
+		if($req = $result->fetch()){
+			$request = new SupportRequest($req);
+			require_once'view/request.php';
+		}else{
+			require_once'view/404.php';
+		}
+	}
 }

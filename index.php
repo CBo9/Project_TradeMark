@@ -1,5 +1,5 @@
 <?php
-
+/*------- CLASS AUTOLOAD -------*/
 spl_autoload_register(function ($class) {
     $directories = ["class","model","controller"];
     foreach ($directories as $dir) {
@@ -9,11 +9,13 @@ spl_autoload_register(function ($class) {
         }
     }
 });
+
 session_start();
 
 $userController = new UserController();
 $supportController = new SupportController();
 
+/*------- INDEX/REDIRECTIONS TO CONTROLLERS -------*/
 if(!empty($_GET)){
     extract($_GET);
     if(isset($a)){
@@ -38,6 +40,13 @@ if(!empty($_GET)){
                 break;
             case 'newRequest':
                 $supportController->newRequest();
+                break;
+            case 'viewRequest':
+                if(isset($reqId)){
+                    $supportController->viewRequest($reqId);
+                }else{
+                    require_once 'view/404.php';
+                }   
                 break;
             default:
                 require 'view/404.php';

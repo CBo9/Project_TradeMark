@@ -9,6 +9,7 @@ class User extends Generic{
 	private $email;
 	private $password;
 	private $avatar;
+	private $status;
 
 	function __construct(array $data = null){
 		if($data){
@@ -29,12 +30,10 @@ class User extends Generic{
         return $this;
     }
 
-
     public function getNickname()
     {
         return $this->nickname;
     }
-
 
     public function setNickname($nickname)
     {
@@ -48,7 +47,6 @@ class User extends Generic{
         return $this->firstName;
     }
 
-
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
@@ -56,7 +54,6 @@ class User extends Generic{
         return $this;
     }
 
-  
     public function getLastName()
     {
         return $this->lastName;
@@ -74,7 +71,6 @@ class User extends Generic{
         return $this->email;
     }
 
-
     public function setEmail($email)
     {
         $this->email = $email;
@@ -82,12 +78,10 @@ class User extends Generic{
         return $this;
     }
 
-
     public function getPassword()
     {
         return $this->password;
     }
-
 
     public function setPassword($password)
     {
@@ -95,17 +89,27 @@ class User extends Generic{
 
         return $this;
     }
-
  
     public function getAvatar()
     {
         return $this->avatar;
     }
 
-  
     public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
 
         return $this;
     }

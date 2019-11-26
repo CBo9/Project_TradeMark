@@ -30,4 +30,11 @@ class SupportManager extends Manager{
 		$deletion->execute();
 	}
 
+	function getRequest($requestId){
+		$db = $this->dbConnect();
+		$request = $db->prepare("SELECT * FROM support WHERE id = :reqId AND userId = :userId");
+		$request->execute(["reqId"=>$requestId,"userId"=>$_SESSION['user']->getId()]);
+		return $request;
+	}
+
 } 
