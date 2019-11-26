@@ -1,12 +1,8 @@
 <?php 
-require_once'class/User.php';
-require_once'model/UserManager.php';
-
 
 class Controller{
 
 	function signUp(){
-		
 		$user = new User($_POST);
 		$userManager = new UserManager();
 		$user->setAvatar('default.jpg');

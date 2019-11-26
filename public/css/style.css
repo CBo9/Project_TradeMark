@@ -16,8 +16,11 @@
     color: white; }
     #navbar a:hover {
       opacity: 1 !important;
-      color: black;
       text-shadow: black 3px 3px 3px; }
+  #navbar #navRight {
+    display: inline;
+    position: absolute;
+    right: 10px; }
 
 .redBgForm {
   background-color: rgba(241, 43, 43, 0.46);
@@ -28,7 +31,7 @@
 .maincontent {
   margin-right: 200px; }
 
-input {
+input, textarea {
   border: white solid 1px;
   border-radius: 10px;
   height: 30px;
@@ -37,7 +40,7 @@ input {
   transition: 0.3s;
   font-weight: bold;
   padding-left: 10px; }
-  input:focus {
+  input:focus, textarea:focus {
     box-shadow: 0 0 2em red; }
 
 .inputFileButton {
@@ -88,3 +91,27 @@ footer {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap; }
+
+/*--- ERROR 404 ---*/
+#title404 {
+  font-size: 5em;
+  color: red; }
+
+#message404 {
+  font-size: 1.7em; }
+  #message404 a {
+    font-size: 1.7em;
+    color: #ff001a;
+    font-weight: bold;
+    text-decoration: none; }
+    #message404 a:hover {
+      text-shadow: 0 0 10px #FB4242; }
+
+#supportForm {
+  width: 1000px;
+  display: grid; }
+  #supportForm input, #supportForm textarea {
+    margin: 15px; }
+  #supportFormtextarea {
+    width: 100%;
+    resize: none; }

@@ -1,46 +1,50 @@
 <?php
 session_start();
 
-require_once'controller/Controller.php';
-$controller = new Controller();
+spl_autoload_register(function ($class) {
+    $directories = ["class","model","controller"];
+    foreach ($directories as $dir) {
+        $file = $dir ."/" . $class . ".php";
+        if(file_exists($file)){
+            require_once $file;
+        }
+    }
+});
+
+$userController = new UserController();
+$supportController = new SupportController();
 
 if(!empty($_GET)){
     extract($_GET);
     if(isset($a)){
         switch($a){
+            case 'home':
+                require_once 'view/home.php';
+                break;
             case 'connection':
                 require 'view/connection.php';
                 break;
             case 'signIn':
-                $controller->signIn();
+                $userController->signIn();
                 break;
             case 'signUp':
-                $controller->signUp();
+                $userController->signUp();
                 break;
             case 'signOut':
-                $controller->deconnexion();
+                $userController->deconnexion();
                 break;
-            case 'gestion':
-                $controller->affichage();
+            case 'support':
+                $supportController->supportPage();
                 break;
-            case 'inscrire':
-                $controller->inscription();
-                break;
-            case 'modifier':
-                $controller->modification($id);
-                break;
-            case 'supprimer':
-                $controller->suppression($id);
-                break;
-            case 'connecter':
-                $controller->connexion();
+            case 'newRequest':
+                $supportController->newRequest();
                 break;
             default:
-                require 'view/error404.php';
+                require 'view/404.php';
                 break;
         }
     }else{
-        require 'view/error404.php';
+        require 'view/404.php';
     }
 }else{
     require 'view/home.php';

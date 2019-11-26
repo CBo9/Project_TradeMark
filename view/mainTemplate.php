@@ -9,11 +9,20 @@
 <body>
 <!--barre de navigation-->
 	<div id="container">
-	    <nav class="nav nav-pills flex-column flex-sm-row" id="navbar">
-	        <a class="flex-sm-fill text-sm-center btn btn-primary" href="index.php">ACCUEIL</a>
-	        <a class="flex-sm-fill text-sm-center btn btn-success" href="index.php?a=connexion">LIVRES</a>
-	        <a class="flex-sm-fill text-sm-center btn btn-warning" href="index.php?a=inscription">JEUX VIDÉOS</a>
-	        <a class="flex-sm-fill text-sm-center btn btn-danger" href="index.php?a=connection">SE CONNECTER</a>
+	    <nav id="navbar">
+	        <a  href="index.php">ACCUEIL</a>
+	        <a  href="index.php?a=connexion">LIVRES</a>
+	        <a  href="index.php?a=inscription">JEUX VIDÉOS</a>
+	        <?php if(isset($_SESSION['id'])):?>
+	        	<a  href="index.php?a=support">SUPPORT</a>
+	        <?php endif; ?>
+	        <div id="navRight">
+		        <?php if(isset($_SESSION['id'])){?>
+		        	<a href="index.php?a=profile"><?= $login ?></a>
+		        <?php }else{?>
+	        		<a  href="index.php?a=connection">SE CONNECTER</a>
+	        	<?php }?>
+	        </div>
 	    </nav>
 
 

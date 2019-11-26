@@ -1,6 +1,4 @@
 <?php 
-require_once'class/Generic.php';
-
 
 class User extends Generic{
 

@@ -21,9 +21,13 @@ $footerHeight : 60px;
 		color:white;
 		&:hover{
 			opacity:1 !important;
-			color:black;
 			text-shadow: black 3px 3px 3px;
 		}
+	}
+	& #navRight{
+		display: inline;
+		position:absolute;
+		right:10px;
 	}
 }
 
@@ -38,7 +42,7 @@ $footerHeight : 60px;
 	margin-right:200px; 
 }
 
-input{
+input,textarea{
 	border:white solid 1px;
 	border-radius:10px;
 	height:30px;
@@ -113,4 +117,37 @@ footer {
 	display:flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
+}
+
+/*--- ERROR 404 ---*/
+
+#title404{
+	font-size:5em;
+	color:red;
+}
+
+#message404{
+	font-size:1.7em;
+	& a{
+		font-size:1.7em;
+		color:#ff001a;
+		font-weight: bold;
+		text-decoration: none;
+		&:hover{
+			text-shadow: 0 0 10px #FB4242;              
+		}
+	}
+}
+
+
+#supportForm{
+	width:1000px;
+	display:grid;
+	& input,textarea{
+		margin:15px;
+	}
+	&textarea{
+		width:100%;
+		resize: none;
+	}
 }
