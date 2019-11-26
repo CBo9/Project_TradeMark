@@ -8,6 +8,9 @@ class SupportController{
 	}
 
 	function newRequest(){
-		
+		$request = new SupportRequest($_POST);
+		$request->setUserId($_SESSION['user']->getId());
+		$supportManager = new SupportManager();
+		$supportManager->newRequest($request);
 	}
 }

@@ -2,20 +2,20 @@
 
 class SupportManager extends Manager{
 
-	function newRequest(){
+	function newRequest(SupportRequest $request){
 		$db = $this->dbConnect();
 		$insert = $db->prepare("INSERT INTO support (userId, title, request) VALUES (:userId, :title, :request)");
-		$insert->execute(["userId"=>,
-							"title"=>,
-							"request"=>]);
+		$insert->execute(["userId"=>$request->getUserId(),
+							"title"=>$request->getTitle(),
+							"request"=>$request->getRequest()]);
 	}
 
 	function newMessage(){
 		$db = $this->dbConnect();
 		$insert = $db->prepare("INSERT INTO supportMessages (requestId, userId, message) VALUES (:requestId, :userId, :message)");
-		$insert->execute(["requestId"=>,
-							"userId"=>,
-							"message"=>]);
+		$insert->execute(["requestId"=>$request,
+							"userId"=>$request,
+							"message"=>$request]);
 	}
 
 	function updateRequest($newStatus,$requestId){

@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 spl_autoload_register(function ($class) {
     $directories = ["class","model","controller"];
@@ -10,6 +9,7 @@ spl_autoload_register(function ($class) {
         }
     }
 });
+session_start();
 
 $userController = new UserController();
 $supportController = new SupportController();

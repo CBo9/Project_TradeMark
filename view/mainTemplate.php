@@ -13,12 +13,12 @@
 	        <a  href="index.php">ACCUEIL</a>
 	        <a  href="index.php?a=connexion">LIVRES</a>
 	        <a  href="index.php?a=inscription">JEUX VIDÉOS</a>
-	        <?php if(isset($_SESSION['id'])):?>
+	        <?php if(isset($_SESSION['user'])):?>
 	        	<a  href="index.php?a=support">SUPPORT</a>
 	        <?php endif; ?>
 	        <div id="navRight">
-		        <?php if(isset($_SESSION['id'])){?>
-		        	<a href="index.php?a=profile"><?= $login ?></a>
+		        <?php if(isset($_SESSION['user'])){?>
+		        	<a href="index.php?a=profile"><?= $_SESSION['user']->getNickname();?></a>
 		        <?php }else{?>
 	        		<a  href="index.php?a=connection">SE CONNECTER</a>
 	        	<?php }?>

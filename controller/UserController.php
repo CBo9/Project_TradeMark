@@ -1,6 +1,6 @@
 <?php 
 
-class Controller{
+class UserController{
 
 	function signUp(){
 		$user = new User($_POST);
@@ -22,7 +22,9 @@ class Controller{
 		$data = $userManager->userConnect($user);
 		if($member = $data->fetch()){
 			if(password_verify($user->getPassword(), $member['password'])){
-				$_SESSION['id'] = $member['id'];
+				$user = new User($member);
+				$_SESSION['user'] = $user;
+				header('location: index.php?a=home');
 			}else{
 				$error = "Le mot de passe est incorrect.";
 			}
