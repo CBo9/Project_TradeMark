@@ -11,15 +11,20 @@ class UserController{
 				$filename = $user->getNickname() . basename($_FILES['avatar']['name']);
 				move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
 				$user->setAvatar($filename);
+				$userManager->createUser($user);
+			}else{
+				$signUpError = "Le fichier transmis dépasse la limite autorisée(1Mo)";
+				require_once'view/connection.php';
 			}
-		}
-		$userManager->newUser($user);    
+		}else{
+			$userManager->createUser($user);
+		}    
 	}
 
 	function signIn(){
 		$user = new User($_POST);
 		$userManager = new UserManager();
-		$data = $userManager->userConnect($user);
+		$data = $userManager->getUserByNick($user);
 		if($member = $data->fetch()){
 			if(password_verify($user->getPassword(), $member['password'])){
 				$user = new User($member);

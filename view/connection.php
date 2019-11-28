@@ -30,7 +30,11 @@ ob_start() ?>
 		<img src="#" id="avatarPreview" alt=" "> 
 		<br><br><br><br>
 		<input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg, .gif"  hidden>
-		
+
+		<?php if(isset($signUpError)):?>
+			<span id="signUpError"><?= $signUpError;?></span>
+		<?php endif;?>
+
 		<input type="submit" value="S'INSCRIRE">
 	</form>
 

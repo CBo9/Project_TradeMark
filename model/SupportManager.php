@@ -18,18 +18,6 @@ class SupportManager extends Manager{
 							"message"=>$message->getMessage()]);
 	}
 
-	function updateRequest($newStatus,$requestId){
-		$db = $this->dbConnect();
-		$update = $db->prepare('UPDATE support SET status = :status WHERE requestId = :requestId');
-		$update->execute(["status"=>$newStatus,"requestId"=>$requestId]);
-	}
-
-	function deleteRequest($id){
-		$db = $this->dbConnect();
-		$deletion = $db->prepare("DELETE FROM support WHERE id = $id");
-		$deletion->execute();
-	}
-
 	function getRequest($requestId){
 		$db = $this->dbConnect();
 		$request = $db->prepare("SELECT * FROM support WHERE id = :reqId AND userId = :userId");
@@ -50,5 +38,16 @@ class SupportManager extends Manager{
 		}
 		return $messages;
 	}
+	
+	function updateRequest($newStatus,$requestId){
+		$db = $this->dbConnect();
+		$update = $db->prepare('UPDATE support SET status = :status WHERE requestId = :requestId');
+		$update->execute(["status"=>$newStatus,"requestId"=>$requestId]);
+	}
 
+	function deleteRequest($id){
+		$db = $this->dbConnect();
+		$deletion = $db->prepare("DELETE FROM support WHERE id = $id");
+		$deletion->execute();
+	}
 } 

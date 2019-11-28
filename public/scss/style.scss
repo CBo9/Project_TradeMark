@@ -151,3 +151,16 @@ footer {
 		resize: none;
 	}
 }
+
+#signUpError,#connectionError{
+	color:red;
+	padding:0.5em;
+	border:red solid 4px;
+	background-color:black;
+	animation:blink 1.5s infinite;
+}
+
+@keyframes blink{
+	0%,100%{opacity:0.4;}
+	50%{opacity:1;}
+}
