@@ -17,8 +17,21 @@ class UserManager extends Manager{
 
 	function getUserByNick(User $user){
 		$db = $this->dbConnect();
-		$connect = $db->prepare('SELECT * FROM users WHERE nickname = :nickname');
-		$connect->execute(["nickname"=>$user->getNickname()]);
-		return $connect;
+		$member = $db->prepare('SELECT * FROM users WHERE nickname = :nickname');
+		$member->execute(["nickname"=>$user->getNickname()]);
+		return $member;
+	}
+
+	function getUserById($id){
+		$db = $this->dbConnect();
+		$user = $db->prepare('SELECT * FROM users WHERE id = :id');
+		$user->execute(["id"=>$id]);
+		return $user;
+	}
+
+	function deleteUser($userId){
+		$db = $this->dbConnect();
+		$deletion = $db->prepare('DELETE FROM users WHERE id = :id');
+		$deletion->execute(["id"=>$userId]);
 	}
 }

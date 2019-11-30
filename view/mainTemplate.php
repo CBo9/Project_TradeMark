@@ -18,7 +18,16 @@
 	        <?php endif; ?>
 	        <div id="navRight">
 		        <?php if(isset($_SESSION['user'])){?>
-		        	<a href="index.php?a=profile"><?= $_SESSION['user']->getNickname();?></a>
+		        	<div id="userSlide">
+		        		<!--<a href="index.php?a=profile&id=<?= $_SESSION['user']->getId();?>" id="userProfile" onclick="userNavSlide()"><?= $_SESSION['user']->getNickname();?></a>-->
+		        		<a  id="userProfile" onclick="userNavSlide()"><?= strtoupper($_SESSION['user']->getNickname());?></a>
+		        		<ul id="userNav">
+		        			<a href="index.php?a=profile&id=<?= $_SESSION['user']->getId();?>"><li id="link1">Mon Profil</li></a>
+		        			<a><li id="link2">test</li></a>
+		        			<a><li id="link3">test</li></a>
+		        			<a href="index.php?a=signOut"><li id="link4">Déconnexion</li></a>
+		        		</ul>
+		        	</div>
 		        <?php }else{?>
 	        		<a  href="index.php?a=connection">SE CONNECTER</a>
 	        	<?php }?>
@@ -32,9 +41,10 @@
 
 	    <footer></footer>
 	</div>
-
+	<?= $additionalScript ?>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="public/js/NavbarOnScroll.js"></script>
+    <script src="public/js/script.js"></script>
 
 </body>
 </html>

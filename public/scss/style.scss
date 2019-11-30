@@ -6,12 +6,12 @@ $footerHeight : 60px;
 {
 	position:fixed;
 	top:0;
-	overflow:hidden;
+	
 	width:100%;
 	padding:$navHeightPadding 10px;
 	background-color: rgba(217,3,3,1);
 	transition:0.8s;
-	& a {
+	&>a, #userSlide>a, #navRight>a {
 		font-family:Roboto;
 		transition:0.4s;
 		padding:0px 30px;
@@ -163,4 +163,52 @@ footer {
 @keyframes blink{
 	0%,100%{opacity:0.4;}
 	50%{opacity:1;}
+}
+
+
+$userNavLinks:4;
+$anim-dur: 300ms;
+$anim-delay: $anim-dur / $userNavLinks;
+#userNav{
+	display:none;
+	position:relative;
+	z-index: 100;
+	width:100%;
+	right:30%;
+	& a{
+		& li{
+			background-color:black;
+			padding:10px;
+			margin:5px;
+			list-style-type: none;
+			position:relative;
+			animation: navLinks $anim-dur;
+			animation-fill-mode: both;
+			transition: background-color 0.4s;
+			color:white;
+			text-decoration:none;
+			border:white 2px solid;
+			&:hover{
+				background-color:lightblue;
+			}
+		}
+	    @for $i from 1 through $userNavLinks {
+	        & #{#link+$i} {
+	            animation-delay: $anim-delay * $i;
+	         }
+	    }
+	}	
+}
+
+@keyframes navLinks{
+	0%{transform: translateX(400px);}
+	100%{transform: translateX(0);}
+}
+
+#userSlide{
+	position: relative;
+}
+
+#userProfile{
+	cursor: pointer;
 }

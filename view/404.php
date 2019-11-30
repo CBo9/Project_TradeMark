@@ -1,6 +1,6 @@
 <?php
 
-$title = "404 - Cette page n'existe pas";
+$title = "404 - La page recherchée n'existe pas";
 
 ob_start() ?>
 

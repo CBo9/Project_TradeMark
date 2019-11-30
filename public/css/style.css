@@ -1,12 +1,11 @@
 #navbar {
   position: fixed;
   top: 0;
-  overflow: hidden;
   width: 100%;
   padding: 50px 10px;
   background-color: #d90303;
   transition: 0.8s; }
-  #navbar a {
+  #navbar > a, #navbar #userSlide > a, #navbar #navRight > a {
     font-family: Roboto;
     transition: 0.4s;
     padding: 0px 30px;
@@ -14,7 +13,7 @@
     text-decoration: none;
     transition: 0.4s;
     color: white; }
-    #navbar a:hover {
+    #navbar > a:hover, #navbar #userSlide > a:hover, #navbar #navRight > a:hover {
       opacity: 1 !important;
       text-shadow: black 3px 3px 3px; }
   #navbar #navRight {
@@ -128,3 +127,42 @@ footer {
     opacity: 0.4; }
   50% {
     opacity: 1; } }
+#userNav {
+  display: none;
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  right: 30%; }
+  #userNav a li {
+    background-color: black;
+    padding: 10px;
+    margin: 5px;
+    list-style-type: none;
+    position: relative;
+    animation: navLinks 300ms;
+    animation-fill-mode: both;
+    transition: background-color 0.4s;
+    color: white;
+    text-decoration: none;
+    border: white 2px solid; }
+    #userNav a li:hover {
+      background-color: lightblue; }
+  #userNav a #link1 {
+    animation-delay: 75ms; }
+  #userNav a #link2 {
+    animation-delay: 150ms; }
+  #userNav a #link3 {
+    animation-delay: 225ms; }
+  #userNav a #link4 {
+    animation-delay: 300ms; }
+
+@keyframes navLinks {
+  0% {
+    transform: translateX(400px); }
+  100% {
+    transform: translateX(0); } }
+#userSlide {
+  position: relative; }
+
+#userProfile {
+  cursor: pointer; }

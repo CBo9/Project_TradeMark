@@ -48,6 +48,13 @@ if(!empty($_GET)){
                     require_once 'view/404.php';
                 }   
                 break;
+            case 'profile':
+                if(isset($id)){
+                    $userController->viewProfile($id);
+                }else{
+                    require_once 'view/404.php';
+                }   
+                break;
             default:
                 require 'view/404.php';
                 break;
