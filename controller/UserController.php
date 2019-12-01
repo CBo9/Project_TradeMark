@@ -35,7 +35,7 @@ class UserController{
 			if(password_verify($user->getPassword(), $member['password'])){
 				$user = new User($member);
 				$_SESSION['user'] = $user;
-				header('location: index.php?a=home');
+				header('location: index.php?a=profile&id='.$_SESSION['user']->getId());
 			}else{
 				$error = "Le mot de passe est incorrect.";
 			}
@@ -51,6 +51,9 @@ class UserController{
 		$userData = $userManager->getUserById($id);
 		if($userData = $userData->fetch()){
 			$profile = new User($userData);
+
+			$itemManager = new ItemManager();
+			$items = $itemManager->getItemsByUser($profile->getId());
 			require_once 'view/profile.php';
 		}else{
 			require_once'view/404.php';
@@ -61,5 +64,10 @@ class UserController{
 	function deleteAccount($userId){
 		$userManager = new userManager();
 		$userManager->deleteUser($userId);
+	}
+
+	function signOut(){
+		session_destroy();
+		header('location:index.php?a=connection');
 	}
 }

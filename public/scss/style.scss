@@ -69,7 +69,7 @@ input,textarea{
 	}
 }
 
-#signUpForm,#signInForm{
+#signUpForm,#signInForm,#newItemForm{
 	width:500px;
 	display:grid;
 	& input{
@@ -171,10 +171,10 @@ $anim-dur: 300ms;
 $anim-delay: $anim-dur / $userNavLinks;
 #userNav{
 	display:none;
-	position:relative;
+	position:absolute;
 	z-index: 100;
 	width:100%;
-	right:30%;
+	right:10%;
 	& a{
 		& li{
 			background-color:black;
@@ -188,6 +188,7 @@ $anim-delay: $anim-dur / $userNavLinks;
 			color:white;
 			text-decoration:none;
 			border:white 2px solid;
+			cursor: pointer;
 			&:hover{
 				background-color:lightblue;
 			}
@@ -211,4 +212,29 @@ $anim-delay: $anim-dur / $userNavLinks;
 
 #userProfile{
 	cursor: pointer;
+}
+
+.itemMiddlePic{
+	height: 350px;
+}
+
+.myItem{
+	border:white 3px solid;
+	padding:20px;
+	& a{
+		color:red;
+	}
+}
+
+#profileInfo{
+	display:flex;
+	& h1{
+		font-size: 3em;
+	}
+}
+$avatarSize:200px;
+.avatar{
+	width:$avatarSize;
+	height:$avatarSize;
+	border-radius:$avatarSize/2;
 }

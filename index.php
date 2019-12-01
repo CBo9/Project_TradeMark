@@ -14,8 +14,10 @@ session_start();
 
 $userController = new UserController();
 $supportController = new SupportController();
+$chatController = new ChatController();
+$itemController = new ItemController();
 
-/*------- INDEX/REDIRECTIONS TO CONTROLLERS -------*/
+/*------- INDEX ROUTERS/TO CONTROLLERS -------*/
 if(!empty($_GET)){
     extract($_GET);
     if(isset($a)){
@@ -26,6 +28,8 @@ if(!empty($_GET)){
             case 'connection':
                 require 'view/connection.php';
                 break;
+
+            /*------SIGN UP/IN/OUT------*/
             case 'signIn':
                 $userController->signIn();
                 break;
@@ -33,8 +37,10 @@ if(!empty($_GET)){
                 $userController->signUp();
                 break;
             case 'signOut':
-                $userController->deconnexion();
+                $userController->signOut();
                 break;
+
+            /*------SUPPORT------*/
             case 'support':
                 $supportController->supportPage();
                 break;
@@ -48,12 +54,37 @@ if(!empty($_GET)){
                     require_once 'view/404.php';
                 }   
                 break;
+
+            
             case 'profile':
                 if(isset($id)){
                     $userController->viewProfile($id);
                 }else{
                     require_once 'view/404.php';
                 }   
+                break;
+            case 'chats':
+                //if(isset($_SESSION['user'])){
+                //    $chatController->viewChats();
+                //}else{
+                    require_once 'view/connection.php';
+                //}
+                break;
+            case 'newItem':
+                $itemController->newItem();
+                break;
+            case 'updateItemForm':
+                if(isset($itemId)){
+                    $itemController->updateItemForm($itemId);
+                }else{
+                    require_once 'view/404.php';
+                }
+                break;
+            case 'manageItems':
+                $itemController->showCurrentItems();
+                break;
+            case 'addItem':
+                $itemController->addItem();
                 break;
             default:
                 require 'view/404.php';

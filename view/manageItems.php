@@ -1,17 +1,10 @@
 <?php
-if(isset($_SESSION['user']) AND $profile->getId() == $_SESSION['user']->getId()){
-	$title = "Mon profil";
-}else{
-	$title = "Profil de " . $profile->getNickname();
 
-}
+$title = "Mes articles";
 
-ob_start() ?>
-<div id="profileInfo">
-	<img src="public/img/avatars/<?= $profile->getAvatar();?>" class="avatar">
-	<h1><?= ucfirst($profile->getNickname());?></h1>
-</div>
+ob_start()?>
 
+<h1>Mes articles</h1>
 
 <?php if(!empty($items)):
 	echo '<div class="container-flex">';
@@ -34,6 +27,10 @@ endif;
 if(empty($items)){
 	echo 'Aucun article pour le moment';
 }
-
+?>
+<p><a href="index.php?a=newItem">Ajouter un article</a><p>
+<?php
 $content = ob_get_clean();
-require_once 'view/mainTemplate.php';
+
+require_once'view/mainTemplate.php';
+

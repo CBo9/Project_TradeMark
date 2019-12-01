@@ -51,10 +51,10 @@ input, textarea {
   border-radius: 10px;
   text-align: center; }
 
-#signUpForm, #signInForm {
+#signUpForm, #signInForm, #newItemForm {
   width: 500px;
   display: grid; }
-  #signUpForm input, #signInForm input {
+  #signUpForm input, #signInForm input, #newItemForm input {
     margin: 15px; }
 
 #signInForm {
@@ -129,10 +129,10 @@ footer {
     opacity: 1; } }
 #userNav {
   display: none;
-  position: relative;
+  position: absolute;
   z-index: 100;
   width: 100%;
-  right: 30%; }
+  right: 10%; }
   #userNav a li {
     background-color: black;
     padding: 10px;
@@ -144,7 +144,8 @@ footer {
     transition: background-color 0.4s;
     color: white;
     text-decoration: none;
-    border: white 2px solid; }
+    border: white 2px solid;
+    cursor: pointer; }
     #userNav a li:hover {
       background-color: lightblue; }
   #userNav a #link1 {
@@ -166,3 +167,22 @@ footer {
 
 #userProfile {
   cursor: pointer; }
+
+.itemMiddlePic {
+  height: 350px; }
+
+.myItem {
+  border: white 3px solid;
+  padding: 20px; }
+  .myItem a {
+    color: red; }
+
+#profileInfo {
+  display: flex; }
+  #profileInfo h1 {
+    font-size: 3em; }
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px; }
