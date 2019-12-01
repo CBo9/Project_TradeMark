@@ -9,3 +9,9 @@ function userNavSlide(){
 		userNav = "inactive";
 	}
 }
+function signOutConfirm(){
+	var signOut = confirm("Voulez-vous vraiment vous déconnecter?");
+	if (signOut == true){
+		document.location.replace('./index.php?a=signOut');
+	}
+}

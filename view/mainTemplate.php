@@ -19,13 +19,12 @@
 	        <div id="navRight">
 		        <?php if(isset($_SESSION['user'])){?>
 		        	<div id="userSlide">
-		        		<!--<a href="index.php?a=profile&id=<?= $_SESSION['user']->getId();?>" id="userProfile" onclick="userNavSlide()"><?= $_SESSION['user']->getNickname();?></a>-->
 		        		<a  id="userProfile" onclick="userNavSlide()"><?= strtoupper($_SESSION['user']->getNickname());?></a>
 		        		<ul id="userNav">
 		        			<a href="index.php?a=profile&id=<?= $_SESSION['user']->getId();?>"><li id="link1">Mon Profil</li></a>
-		        			<a><li id="link2">test</li></a>
-		        			<a><li id="link3">test</li></a>
-		        			<a href="index.php?a=signOut"><li id="link4">Déconnexion</li></a>
+		        			<a href="index.php?a=chats"><li id="link2">Mes messages</li></a>
+		        			<a href="index.php?a=manageItems"><li id="link3">Gérer mes articles</li></a>
+		        			<a onclick="signOutConfirm()"><li id="link4">Déconnexion</li></a>
 		        		</ul>
 		        	</div>
 		        <?php }else{?>
