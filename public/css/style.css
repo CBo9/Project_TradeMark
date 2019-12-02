@@ -169,7 +169,10 @@ footer {
   cursor: pointer; }
 
 .itemMiddlePic {
-  height: 350px; }
+  height: 350px;
+  transition: 0.5s; }
+  .itemMiddlePic:hover {
+    transform: scale(1.5); }
 
 .myItem {
   border: white 3px solid;
