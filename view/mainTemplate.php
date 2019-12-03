@@ -21,7 +21,7 @@
 		        	<div id="userSlide">
 		        		<a  id="userProfile" onclick="userNavSlide()"><?= strtoupper($_SESSION['user']->getNickname());?></a>
 		        		<ul id="userNav">
-		        			<a href="index.php?a=profile&id=<?= $_SESSION['user']->getId();?>"><li id="link1">Mon Profil</li></a>
+		        			<a href="index.php?a=profile&amp;id=<?= $_SESSION['user']->getId();?>"><li id="link1">Mon Profil</li></a>
 		        			<a href="index.php?a=chats"><li id="link2">Mes messages</li></a>
 		        			<a href="index.php?a=manageItems"><li id="link3">Gérer mes articles</li></a>
 		        			<a onclick="signOutConfirm()"><li id="link4">Déconnexion</li></a>
@@ -40,10 +40,13 @@
 
 	    <footer></footer>
 	</div>
-	<?= $additionalScript ?>
+	
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="public/js/NavbarOnScroll.js"></script>
     <script src="public/js/script.js"></script>
+    <?php if(isset($additionalScript)){
+		echo $additionalScript;
+	}?>
 
 </body>
 </html>

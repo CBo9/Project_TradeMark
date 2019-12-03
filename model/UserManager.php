@@ -29,6 +29,25 @@ class UserManager extends Manager{
 		return $user;
 	}
 
+	function updateUser(User $user){
+		$db = $this->dbConnect();
+		$update = $db->prepare('UPDATE users SET nickname = :nick, firstName = :firstN, lastName = :lastN, email = :email, password = :password, avatar = :avatar WHERE id = :userId');
+		$update->execute(["nick"=>$user->getNickname(),
+						  "firstN"=>$user->getFirstName(),
+						  "lastN"=>$user->getLastName(),
+						  "email"=>$user->getEmail(),
+						  "password"=>$user->getPassword(),
+						  "avatar"=>$user->getAvatar(),
+						  "userId"=>$_SESSION['user']->getId()]);
+	}
+
+	function getUserAvatar($userId){
+		$db = $this->dbConnect();
+		$avatar = $db->prepare("SELECT avatar FROM users WHERE id = :userId");
+		$avatar->execute(["userId"=>$userId]);
+		return $avatar;
+	}
+
 	function deleteUser($userId){
 		$db = $this->dbConnect();
 		$deletion = $db->prepare('DELETE FROM users WHERE id = :id');

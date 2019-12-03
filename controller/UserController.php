@@ -35,7 +35,7 @@ class UserController{
 			if(password_verify($user->getPassword(), $member['password'])){
 				$user = new User($member);
 				$_SESSION['user'] = $user;
-				header('location: index.php?a=profile&id='.$_SESSION['user']->getId());
+				header('location: index.php?a=profile&amp;id='.$_SESSION['user']->getId());
 			}else{
 				$error = "Le mot de passe est incorrect.";
 			}
@@ -61,9 +61,32 @@ class UserController{
 		
 	}
 
+	function UpdateUser(){
+		$user = new User($_POST);
+		$user->setId($_SESSION['user']->getId());
+		$userManager = new UserManager();
+		if(isset($_FILES['avatar']) AND $_FILES['avatar']['error'] == 0){
+			if($_FILES['avatar']['size'] <= 1000000){
+					$filename = $user->getNickname() . basename($_FILES['avatar']['name']);
+					move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
+					$user->setAvatar($filename);
+			}else{
+					$formError = "Le fichier transmis dépasse la limite autorisée(1Mo)";
+					require_once'view/profile.php';
+			}
+		}else{
+			$avatar = $userManager->getUserAvatar($user->getId());
+			$user->setAvatar($avatar);
+		}
+		$userManager->updateUser($user);
+		header('locaion:index.php?a=profile&amp;id=' . $user->getId());
+	}
+
 	function deleteAccount($userId){
 		$userManager = new userManager();
+		$avatar = $userManager->getUserAvatar($userId);
 		$userManager->deleteUser($userId);
+		unlink("public/img/avatars/$avatar");
 	}
 
 	function signOut(){

@@ -7,14 +7,14 @@ if(isset($_SESSION['user']) AND $profile->getId() == $_SESSION['user']->getId())
 }
 
 ob_start() ?>
-<div id="profileInfo">
+<div id="profileHeader">
 	<img src="public/img/avatars/<?= $profile->getAvatar();?>" class="avatar">
 	<h1><?= ucfirst($profile->getNickname());?></h1>
 </div>
 
 
 <?php if(!empty($items)):
-	echo '<div class="container-flex">';
+	echo '<div class="container-flex" id="ItemShelf">';
 	 foreach ($items as $item):?>
 		<div class="myItem">
 			<h4><?= $item->getName();?></h4>
@@ -23,8 +23,12 @@ ob_start() ?>
 			<?php endif;?>
 			<p><?= $item->getDescription();?></p>
 			<?php if(isset($_SESSION['user']) AND $_SESSION['user']->getId() == $item->getOwnerId()):?>
-				<a href="index.php?a=updateItemForm&itemId=<?= $item->getId();?>">Modifier</a>
-				<a href="index.php?a=deleteItem&itemId=<?= $item->getId();?>">Supprimmer</a>
+				<a class='updateBtn' href="index.php?a=updateItemForm&amp;itemId=<?= $item->getId();?>">
+					Modifier
+				</a>
+				<a id="deleteItem<?= $item->getID();?>"  class="deleteBtn"  onclick="deleteItem(<?= $item->getId();?>)">
+					Supprimer
+				</a>
 			<?php endif;?>
 		</div>
 	<?php endforeach;

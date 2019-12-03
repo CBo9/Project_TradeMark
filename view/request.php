@@ -27,7 +27,7 @@ if(!empty($messages)):
 endif;?>
 
 
-<form method="POST" action="index.php?a=newMessage&reqId=<?= $request->getId();?>">
+<form method="POST" action="index.php?a=newMessage&amp;reqId=<?= $request->getId();?>">
 <h3>Ajouter une réponse</h3>
 <textarea name="message" placeholder="Écrivez votre message(500 caractères max)"></textarea>
 <input type="submit" value="Envoyer">

@@ -16,8 +16,8 @@ ob_start()?>
 			<?php endif;?>
 			<p><?= $item->getDescription();?></p>
 			<?php if(isset($_SESSION['user']) AND $_SESSION['user']->getId() == $item->getOwnerId()):?>
-				<a href="index.php?a=updateItemForm&itemId=<?= $item->getId();?>">Modifier</a>
-				<a href="index.php?a=deleteItem&itemId=<?= $item->getId();?>">Supprimmer</a>
+				<a href="index.php?a=updateItemForm&amp;itemId=<?= $item->getId();?>">Modifier</a>
+				<a href="index.php?a=deleteItem&amp;itemId=<?= $item->getId();?>">Supprimmer</a>
 			<?php endif;?>
 		</div>
 	<?php endforeach;
