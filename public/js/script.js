@@ -29,3 +29,8 @@ async function deleteItem(itemId){
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+
+function getChatWith(userId){
+	document.location.replace('./index.php?a=chat&userId='+userId);
+}

@@ -37,7 +37,9 @@ endif;
 
 if(empty($items)){
 	echo 'Aucun article pour le moment';
-}
+}?>
 
+<p><a href="index.php?a=newItem">Ajouter un article</a><p>
+<?php
 $content = ob_get_clean();
 require_once 'view/mainTemplate.php';

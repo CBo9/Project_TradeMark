@@ -15,7 +15,7 @@ ob_start()?>
 	<textarea name="description" id="description" placeholder="Description rapide de votre article" required></textarea>
 
 	<label for="picture" class="inputFileButton">Ajouter une photo de votre article</label>
-	<input type="file" name="picture" id="picture" hidden accept=".png, .gif, .jpeg" >
+	<input type="file" name="picture" id="picture" hidden accept=".png, .gif, .jpg" >
 
 	<input type="submit" value="Ajouter un article">
 </form>

@@ -223,3 +223,59 @@ footer {
     background-color: #104204; }
   .updateBtn:active {
     box-shadow: inset black 1px 1px 3px; }
+
+/*------CHATS------*/
+.chatConversation {
+  padding: 5px;
+  margin: 2px;
+  border: solid white 2px; }
+
+.messageInfos {
+  display: flex;
+  position: relative;
+  width: 100%; }
+  .messageInfos span {
+    right: 10px;
+    position: absolute; }
+
+#chatContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #990000;
+  margin: auto 33%;
+  padding: 50px;
+  width: 33%;
+  align-content: flex-end;
+  height: 100%; }
+  #chatContainer #AllMessages {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 100%; }
+  #chatContainer .messageContainer {
+    background-color: black;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px; }
+    #chatContainer .messageContainer a {
+      color: white;
+      font-size: 1.2em;
+      transition: color 0.2s; }
+      #chatContainer .messageContainer a:hover {
+        color: red; }
+    #chatContainer .messageContainer span {
+      font-size: 0.8em;
+      color: grey; }
+  #chatContainer form {
+    display: flex;
+    align-items: stretch;
+    height: 100px; }
+    #chatContainer form textarea {
+      width: 100%;
+      height: 100%;
+      resize: none;
+      font-family: Roboto; }
+    #chatContainer form input {
+      height: 50%; }
+      #chatContainer form input:hover {
+        background-color: #939b9f;
+        cursor: pointer; }

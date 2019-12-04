@@ -53,4 +53,15 @@ class UserManager extends Manager{
 		$deletion = $db->prepare('DELETE FROM users WHERE id = :id');
 		$deletion->execute(["id"=>$userId]);
 	}
+
+	function getUserNickname($userId){
+		$db = $this->dbConnect();
+		$request = $db->prepare('SELECT nickname FROM users WHERE id = :userId');
+		$request->execute(["userId"=>$userId]);
+		if($user = $request->fetch()){
+			$nickname = $user['nickname'];
+			return $nickname;
+		}
+	}
+	
 }

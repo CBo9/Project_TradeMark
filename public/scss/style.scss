@@ -290,3 +290,74 @@ $updateBtnBgColor:#27a10b;
 			box-shadow:inset black 1px 1px 3px;
 		}
 }
+
+
+/*------CHATS------*/
+
+.chatConversation{
+	padding:5px;
+	margin:2px;
+	border:solid white 2px;
+}
+
+.messageInfos{
+	display: flex;
+	position:relative;
+	width: 100%;
+	& span{
+		right:10px;
+		position: absolute;
+	}
+}
+
+#chatContainer{
+	display: flex;
+	flex-direction: column;
+	background-color:darken(red,20%);
+	margin:auto 33%;
+	padding:50px;
+	width: 33%;
+	align-content:flex-end;
+	height:100%;
+	& #AllMessages{
+		overflow:scroll;
+    	overflow-x:hidden;
+    	height:100%;
+	}
+	& .messageContainer{
+		background-color:darken(red,50%);
+		margin:20px;
+		padding:20px;
+		border-radius:20px;
+		& a{
+			color:white;
+			font-size:1.2em;
+			transition:color 0.2s;
+			&:hover{
+				color:red;
+			}
+		}
+		& span{
+			font-size:0.8em;
+			color:grey;
+		}
+	}
+	& form{
+		display: flex;
+		align-items:stretch;
+		height:100px;
+		& textarea{
+			width:100%;
+			height:100%;
+			resize:none;
+			font-family:Roboto;
+		}
+		& input{
+			height:50%;
+			&:hover{
+				background-color:lighten(#181a1b,50%);
+				cursor:pointer;
+			}
+		}
+	}
+}

@@ -63,12 +63,15 @@ if(!empty($_GET)){
                     require_once 'view/404.php';
                 }   
                 break;
-            case 'chats':
-                //if(isset($_SESSION['user'])){
-                //    $chatController->viewChats();
-                //}else{
-                    require_once 'view/connection.php';
-                //}
+            case 'myChats':
+                $chatController->viewAllChats();
+                break;
+            case 'chat':
+                if(isset($userId)){
+                    $chatController->viewChatWith($userId);
+                }else{
+                    require_once'view/404.php';
+                }
                 break;
 
             /*------ITEM FORMS------*/
