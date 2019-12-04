@@ -70,6 +70,8 @@ if(!empty($_GET)){
                     require_once 'view/connection.php';
                 //}
                 break;
+
+            /*------ITEM FORMS------*/
             case 'newItem':
                 $itemController->newItem();
                 break;
@@ -83,8 +85,24 @@ if(!empty($_GET)){
             case 'manageItems':
                 $itemController->showCurrentItems();
                 break;
+
+            /*------ITEM ACTIONS------*/
             case 'addItem':
                 $itemController->addItem();
+                break;
+            case 'deleteItem':
+               if(isset($itemId)){
+                    $itemController->deleteItem($itemId);
+                }else{
+                    require_once 'view/404.php';
+                }
+                break;
+            case 'updateItem':
+                if(isset($itemId)){
+                    $itemController->updateItem($itemId);
+                }else{
+                    require_once 'view/404.php';
+                }
                 break;
             default:
                 require 'view/404.php';

@@ -35,7 +35,7 @@ class UserController{
 			if(password_verify($user->getPassword(), $member['password'])){
 				$user = new User($member);
 				$_SESSION['user'] = $user;
-				header('location: index.php?a=profile&amp;id='.$_SESSION['user']->getId());
+				header('location: index.php?a=profile&id='.$_SESSION['user']->getId());
 			}else{
 				$error = "Le mot de passe est incorrect.";
 			}

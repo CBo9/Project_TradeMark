@@ -2,26 +2,7 @@
 
 class ItemController{
 
-	function addItem(){
-		$item = new Item($_POST);
-		$itemManager = new ItemManager();
-
-		if(isset($_FILES['picture']) AND $_FILES['picture']['error'] == 0){
-				if($_FILES['picture']['size'] <= 1000000){
-					$filename = $item->getName() . basename($_FILES['picture']['name']);
-					move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
-					$item->setPicture($filename);
-					$itemManager->createItem($item);
-					header('location:index.php?a=manageItems');
-				}else{
-					$pictureError = "Le fichier transmis dépasse la limite autorisée(1Mo)";
-					require_once'view/newItem.php';
-				}
-		}else{
-			require_once'view/newItem.php';
-		}
-	}
-
+	/*------ITEM VIEWS------*/
 	function showCurrentItems(){
 		$itemManager = new ItemManager();
 		$items = $itemManager->getItemsByUser($_SESSION['user']->getId());
@@ -42,7 +23,7 @@ class ItemController{
 			$item = new Item($item);
 			if($_SESSION['user']->getId() == $item->getOwnerId()){
 				$titleAction ="Modifier";
-				$formAction = "?a=updateItem&amp;itemId=" . $item->getId(); 
+				$formAction = "?a=updateItem&itemId=" . $item->getId(); 
 				require_once"view/newItem.php";
 			}else{
 				$error = "Vous n'êtes pas autorisé à modifier cet article!";
@@ -53,30 +34,67 @@ class ItemController{
 		}
 	}
 
+	/*------ITEM ACTIONS------*/
+	function addItem(){
+		$item = new Item($_POST);
+		$itemManager = new ItemManager();
+
+		if(isset($_FILES['picture']) AND $_FILES['picture']['error'] == 0){
+				if($_FILES['picture']['size'] <= 1000000){
+					$filename = $item->getName() . basename($_FILES['picture']['name']);
+					move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
+					$item->setPicture($filename);
+					$itemManager->createItem($item);
+					header('location:index.php?a=manageItems');
+				}else{
+					$pictureError = "Le fichier transmis dépasse la limite autorisée(1Mo)";
+					require_once'view/newItem.php';
+				}
+		}else{
+			require_once'view/newItem.php';
+		}
+	}
+
+
 	function updateItem($itemId){
 		$itemManager = new ItemManager();
 		$item = new Item($_POST);
-		if(isset($_FILES['picture']) AND $_FILES['picture']['error'] == 0){
-			if($_FILES['picture']('size') <= 5000000){
-				$filename = $item->getName() . basename($_FILES['picture']['name']);
-				move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
-				$item->setPicture($filename);
+		$item->setId($itemId);
+		$itemOwner = $itemManager->getUserIdByItem($itemId);
+		if(isset($_SESSION['user']) AND $_SESSION['user']->getId() == $itemOwner){
+			if(isset($_FILES['picture']) AND $_FILES['picture']['error'] == 0){
+				if($_FILES['picture']['size'] <= 5000000){
+					$filename = $item->getName() . basename($_FILES['picture']['name']);
+					move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
+					$item->setPicture($filename);
+				}else{
+					$error = "La photo fournie est trop volumineuse";
+				}
 			}else{
-				$error = "La photo fournie est trop volumineuse";
+				$picture = $itemManager->getItemPicture($itemId);
+				$item->setPicture($picture);
 			}
+			$itemManager->updateItem($item);
+			header("location:index.php?a=profile&id=" . $_SESSION['user']->getId());
 		}else{
-			$picture = $itemManager->getItemPicture($itemId);
-			$item->setPicture($picture);
+			$error = "Vous ne pouvez pas modifier un article qui ne vous appartiens pas!";
+			require_once'view/404.php';
 		}
-		$itemManager->updateItem($item);
-		header("location:index.php?a=profile&amp;id=" . $_SESSION['user']->getId());
 	}
 
 	function deleteItem($itemId){
 		$itemManager = new ItemManager();
-		$picture = $itemManager->getItemPicture($itemId);
-		$itemManager->deleteItem($itemId);
-		unlink('public/img/items/' . $picture);
+		$itemUserId = $itemManager->getUserIdByItem($itemId);
+		
+		if(isset($_SESSION['user']) AND $_SESSION['user']->getId() == $itemUserId){
+			$picture = $itemManager->getItemPicture($itemId);
+			$itemManager->deleteItem($itemId);
+			unlink('public/img/items/' . $picture);
+			header("location:index.php?a=profile&id=" . $_SESSION['user']->getId());
+		echo $itemUserId;	
+		}else{
+			require_once 'view/404.php';
+		}
 	}
 
 

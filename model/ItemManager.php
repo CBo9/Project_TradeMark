@@ -11,8 +11,13 @@ class ItemManager extends Manager{
 							 "picture"=>$item->getPicture()]);
 	}
 
-	function updateItem(){
-
+	function updateItem(Item $item){
+		$db = $this->dbConnect();
+		$update = $db->prepare("UPDATE items SET name = :name, description = :descr, picture = :picture WHERE id = :itemId");
+		$update->execute(["name"=>$item->getName(),
+						  "descr"=>$item->getDescription(),
+						  "picture"=>$item->getPicture(),
+						  "itemId"=>$item->getId()]);
 	}
 
 	function deleteItem($itemId){
@@ -37,5 +42,27 @@ class ItemManager extends Manager{
 		$request = $db->prepare("SELECT * FROM items WHERE id = :id");
 		$request->execute(["id"=>$itemId]);
 		return $request;
+	}
+
+	function getUserIdByItem($itemId){
+		$db = $this->dbConnect();
+		$request = $db->prepare("SELECT ownerId FROM items WHERE id = :id");
+		$request->execute(["id"=>$itemId]);
+		if($user = $request->fetch()){
+			$userId = $user['ownerId'];
+		}else{
+			$userId = "not found";
+		}
+		return $userId;
+	}
+
+	function getItemPicture($itemId){
+		$db = $this->dbConnect();
+		$request = $db->prepare("SELECT picture FROM items WHERE id = :id");
+		$request->execute(["id"=>$itemId]);
+		if($item = $request->fetch()){
+			$picture = $item['picture'];
+		}
+		return $picture;
 	}
 }
