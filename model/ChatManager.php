@@ -2,13 +2,13 @@
 
 class ChatManager extends Manager{
 
-	function createChat(ChatMessage $message){
+	function createNewMessage(ChatMessage $message){
 		$db = $this->dbConnect();
 		$insert = $db->prepare("INSERT INTO chat(senderId, receiverId, message) 
 								VALUES (:sender, :receiver, :message)");
 		$insert->execute(["sender"=>$message->getSenderId(),
 						  "receiver"=>$message->getReceiverId(),
-						  "message"=>$message->getReceiverId()]);
+						  "message"=>$message->getMessage()]);
 	}
 
 	function getChatMessagesWithUser(User $user,$receiverId){

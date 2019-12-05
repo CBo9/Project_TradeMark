@@ -45,7 +45,7 @@ class ItemController{
 					move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
 					$item->setPicture($filename);
 					$itemManager->createItem($item);
-					header('location:index.php?a=manageItems');
+					header('location:index.php?a=profile&id='.$_SESSION['user']->getId());
 				}else{
 					$pictureError = "Le fichier transmis dépasse la limite autorisée(1Mo)";
 					require_once'view/newItem.php';

@@ -2,17 +2,17 @@
 
 class ChatController{
 
-	function sendMessageToUser($receiverId){
+	function sendChatMessage($receiverId){
 		if(isset($_SESSION['user'])){
 			$sender = $_SESSION['user'];
 			$message = new ChatMessage($_POST);
-			$message->setReceiverId($id);
-			$message->setSenderId($user->getID());
+			$message->setReceiverId($receiverId);
+			$message->setSenderId($sender->getId());
 
 			$chatManager = new ChatManager();
 			$chatManager->createNewMessage($message);
 
-			header('location:index.php?a=chat&userId='.$userId);
+			header('location:index.php?a=chat&userId='.$receiverId);
 		}else{
 			require_once'view/connection.php';
 		}	
