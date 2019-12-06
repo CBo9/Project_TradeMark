@@ -73,6 +73,8 @@ class ItemController{
 					$filename = $item->getName() . basename($_FILES['picture']['name']);
 					move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
 					$item->setPicture($filename);
+					$previousPicture = $itemManager->getItemPicture($item->getId());
+					unlink('public/img/items/'.$previousPicture);
 				}else{
 					$error = "La photo fournie est trop volumineuse";
 				}

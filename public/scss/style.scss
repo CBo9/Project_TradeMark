@@ -386,19 +386,37 @@ $updateBtnBgColor:#27a10b;
 	}
 }
 
-#addItemIcon{
-	height:70px;
-	width: 70px;
-	border-radius:35px;
-	border:solid 3px white;
+
+$addIconHeight:30px;
+#addNewItem{
+	padding-left:20px;
 	display: inline-block;
-	color:white;
-	text-align:center;
-	text-decoration: none;
-	line-height:70px;
-	font-size:4em;
-	transition:0.3s;
-	&:hover{
-		transform: rotate(270deg);
+	& #addItemIcon{
+		height:$addIconHeight;
+		width: $addIconHeight;
+		border-radius:1em;
+		border:solid 3px white;
+		display: inline-block;
+		color:white;
+		text-align:center;
+		text-decoration: none;
+		line-height:$addIconHeight;
+		font-size:2em;
+		transition:0.3s;
 	}
+	& #addItemText{
+		opacity: 0;
+		height:100%;
+		display: inline-block;
+		transition:0.3s;
+	}
+	&:hover{
+		& #addItemIcon{
+			transform: rotate(270deg) scale(2);
+		}
+		& #addItemText{
+			opacity:1;
+			transform: translateX(20px);
+		}
+	} 
 }

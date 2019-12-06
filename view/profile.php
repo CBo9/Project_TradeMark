@@ -39,7 +39,12 @@ if(empty($items)){
 	echo 'Aucun article pour le moment';
 }?>
 
-<p><a href="index.php?a=newItem">Ajouter un article</a><p>
+<div id="addNewItem">
+	<a id="addItemIcon" href="index.php?a=newItem">+</a>
+	<span id="addItemText">Ajouter un article</span>
+</div>
+
+
 <?php
 $content = ob_get_clean();
 require_once 'view/mainTemplate.php';
