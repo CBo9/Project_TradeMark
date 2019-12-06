@@ -4,6 +4,7 @@ class Item extends Generic{
 
 	private $id;
 	private $ownerId;
+    private $ownerNickname;
 	private $name;
 	private $description;
 	private $picture;
@@ -37,6 +38,17 @@ class Item extends Generic{
     public function setOwnerId($ownerId)
     {
         $this->ownerId = $ownerId;
+
+        return $this;
+    }
+    public function getOwnerNickname()
+    {
+        return $this->ownerNickname;
+    }
+
+    public function setOwnerNickname($ownerNickname)
+    {
+        $this->ownerNickname = $ownerNickname;
 
         return $this;
     }

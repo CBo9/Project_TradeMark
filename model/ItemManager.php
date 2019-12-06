@@ -65,4 +65,15 @@ class ItemManager extends Manager{
 		}
 		return $picture;
 	}
+
+	function getLastItems($itemsNb){
+		$db = $this->dbConnect();
+		$request = $db->prepare("SELECT items.*, users.nickname as ownerNickname FROM items INNER JOIN users ON users.id = items.ownerId ORDER BY addingDate DESC LIMIT $itemsNb ");
+		$request->execute();
+		while($itemData = $request->fetch()){
+			$item = new Item($itemData);
+			$items[] = $item;
+		}
+		return $items;
+	}
 }

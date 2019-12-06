@@ -16,6 +16,7 @@ ob_start() ?>
 				<span><?= $message->getDateSended();?></span>
 			</div>
 		<?php endforeach;?>
+		<span id="messagesEnd"></span>
 	</div>
 	<form method="POST" action='index.php?a=sendMessage&amp;userId=<?= $otherUserId;?>' id='chatForm'>
 		<textarea name="message" id="message" placeholder="Envoyer un message à <?= $otherUserName;?>"></textarea>

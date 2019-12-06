@@ -27,9 +27,6 @@
   margin: 20px;
   border-radius: 3em; }
 
-.maincontent {
-  margin-right: 200px; }
-
 input, textarea {
   border: white solid 1px;
   border-radius: 10px;
@@ -73,7 +70,7 @@ body {
 #container {
   min-height: 100%;
   position: relative;
-  margin-top: 174px;
+  padding-top: 144px;
   padding-bottom: 60px; }
 
 #mainContent {
@@ -134,7 +131,15 @@ footer {
   z-index: 100;
   width: 100%;
   right: 10%; }
-  #userNav a li {
+  #userNav a #link1 {
+    animation-delay: 75ms; }
+  #userNav a #link2 {
+    animation-delay: 150ms; }
+  #userNav a #link3 {
+    animation-delay: 225ms; }
+  #userNav a #link4 {
+    animation-delay: 300ms; }
+  #userNav li {
     background-color: black;
     padding: 10px;
     margin: 5px;
@@ -148,16 +153,10 @@ footer {
     border: white 2px solid;
     cursor: pointer;
     z-index: 100; }
-    #userNav a li:hover {
+    #userNav li:hover {
       background-color: lightblue; }
-  #userNav a #link1 {
-    animation-delay: 75ms; }
-  #userNav a #link2 {
-    animation-delay: 150ms; }
-  #userNav a #link3 {
-    animation-delay: 225ms; }
-  #userNav a #link4 {
-    animation-delay: 300ms; }
+  #userNav a {
+    text-decoration: none; }
 
 @keyframes navLinks {
   0% {
@@ -227,16 +226,14 @@ footer {
 /*------CHATS------*/
 .chatConversation {
   padding: 5px;
-  margin: 2px;
-  border: solid white 2px; }
+  border: solid white 2px;
+  z-index: 0; }
 
 .messageInfos {
   display: flex;
-  position: relative;
-  width: 100%; }
-  .messageInfos span {
-    right: 10px;
-    position: absolute; }
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between; }
 
 #chatContainer {
   display: flex;
@@ -246,7 +243,7 @@ footer {
   padding: 50px;
   width: 33%;
   align-content: flex-end;
-  height: 100%; }
+  height: 60vh; }
   #chatContainer #AllMessages {
     overflow: scroll;
     overflow-x: hidden;
@@ -279,3 +276,39 @@ footer {
       #chatContainer form input:hover {
         background-color: #939b9f;
         cursor: pointer; }
+
+.itemSmallPic {
+  width: 100%; }
+
+#lastItemsAdded {
+  max-height: 100%;
+  border: 4px solid white;
+  border-radius: 5px;
+  padding: 0 10px;
+  width: 40% !important; }
+  #lastItemsAdded .lastItem {
+    background-color: red;
+    margin: 10px 0; }
+    #lastItemsAdded .lastItem h3 {
+      margin-top: 1px; }
+
+#maincontent {
+  display: flex;
+  margin: 0 5%; }
+  #maincontent h1, #maincontent h2 {
+    text-decoration: underline; }
+
+#addItemIcon {
+  height: 70px;
+  width: 70px;
+  border-radius: 35px;
+  border: solid 3px white;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  line-height: 70px;
+  font-size: 4em;
+  transition: 0.3s; }
+  #addItemIcon:hover {
+    transform: rotate(270deg); }

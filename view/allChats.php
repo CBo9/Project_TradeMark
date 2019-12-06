@@ -27,7 +27,7 @@ foreach ($messages as $message) :
 		 }
 ?>
 			<div class="chatConversation" onclick="getChatWith(<?= $otherUserId;?>">
-					<h4><a href="index.php?a=chat&amp;userId=<?= $otherUserId;?>"><?= $otherUser?></a></h4>
+					<h4><a href="index.php?a=chat&amp;userId=<?= $otherUserId;?>#messagesEnd"><?= $otherUser?></a></h4>
 					<p class="messageInfos">
 						<?= $lastMessageSender;?> : <?= $message->getMessage();?>
 						<span><?= $message->getDateSended();?></span>

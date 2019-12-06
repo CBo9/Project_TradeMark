@@ -9,6 +9,12 @@ class ItemController{
 		require_once 'view/manageItems.php';
 	}
 
+	function showHome(){
+		$itemManager = new ItemManager();
+		$lastItems = $itemManager->getLastItems(5);
+		require_once'view/home.php';
+	}
+
 	/*------ITEM FORMS------*/
 	function newItem(){
 		$titleAction = "Ajouter";

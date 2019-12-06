@@ -23,7 +23,7 @@ if(!empty($_GET)){
     if(isset($a)){
         switch($a){
             case 'home':
-                require_once 'view/home.php';
+                $itemController->showHome();
                 break;
             case 'connection':
                 require 'view/connection.php';
@@ -122,5 +122,5 @@ if(!empty($_GET)){
         require 'view/404.php';
     }
 }else{
-    require 'view/home.php';
+    $itemController->showHome();
 }

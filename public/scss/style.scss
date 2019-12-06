@@ -1,5 +1,5 @@
 $navHeightPadding:50px;
-$navHeight:44+ $navHeightPadding*2 +30 ;
+$navHeight:44+ $navHeightPadding*2  ;
 $footerHeight : 60px;
 
 #navbar
@@ -38,9 +38,6 @@ $footerHeight : 60px;
 	border-radius:3em;
 }
 
-.maincontent{
-	margin-right:200px; 
-}
 
 input,textarea{
 	border:white solid 1px;
@@ -96,13 +93,12 @@ body {
 #container {
    min-height:100%;
    position:relative;
-   margin-top:$navHeight ;
+   padding-top:$navHeight ;
    padding-bottom: $footerHeight;
 }
 
 #mainContent {
    padding:10px;
-     
 }
 
 footer {
@@ -177,7 +173,13 @@ $anim-delay: $anim-dur / $userNavLinks;
 	width:100%;
 	right:10%;
 	& a{
-		& li{
+	    @for $i from 1 through $userNavLinks {
+	        & #{#link+$i} {
+	            animation-delay: $anim-delay * $i;
+	         }
+	    }
+	}
+	& li{
 			background-color:black;
 			padding:10px;
 			margin:5px;
@@ -195,11 +197,8 @@ $anim-delay: $anim-dur / $userNavLinks;
 				background-color:lightblue;
 			}
 		}
-	    @for $i from 1 through $userNavLinks {
-	        & #{#link+$i} {
-	            animation-delay: $anim-delay * $i;
-	         }
-	    }
+	& a{
+		text-decoration:none;
 	}	
 }
 
@@ -296,18 +295,15 @@ $updateBtnBgColor:#27a10b;
 
 .chatConversation{
 	padding:5px;
-	margin:2px;
 	border:solid white 2px;
+	z-index: 0;
 }
 
 .messageInfos{
 	display: flex;
-	position:relative;
+	flex-wrap: wrap;
 	width: 100%;
-	& span{
-		right:10px;
-		position: absolute;
-	}
+	justify-content: space-between;
 }
 
 #chatContainer{
@@ -318,7 +314,7 @@ $updateBtnBgColor:#27a10b;
 	padding:50px;
 	width: 33%;
 	align-content:flex-end;
-	height:100%;
+	height:60vh;
 	& #AllMessages{
 		overflow:scroll;
     	overflow-x:hidden;
@@ -359,5 +355,50 @@ $updateBtnBgColor:#27a10b;
 				cursor:pointer;
 			}
 		}
+	}
+}
+
+
+.itemSmallPic{
+	width: 100%;
+}
+
+#lastItemsAdded{
+	max-height:100%;
+	border:4px solid white;
+	border-radius:5px;
+	padding:0 10px;
+	width: 40% !important;
+	& .lastItem{
+		background-color:red ;
+		margin: 10px 0;
+		& h3{
+			margin-top:1px; 
+		}
+	}
+}
+
+#maincontent{
+	display: flex; 
+	margin:0 5%;
+	& h1, h2{
+		text-decoration: underline;
+	}
+}
+
+#addItemIcon{
+	height:70px;
+	width: 70px;
+	border-radius:35px;
+	border:solid 3px white;
+	display: inline-block;
+	color:white;
+	text-align:center;
+	text-decoration: none;
+	line-height:70px;
+	font-size:4em;
+	transition:0.3s;
+	&:hover{
+		transform: rotate(270deg);
 	}
 }
