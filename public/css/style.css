@@ -198,6 +198,7 @@ footer {
 .avatar {
   width: 200px;
   height: 200px;
+  object-fit: cover;
   border-radius: 100px; }
 
 .deleteBtn, .updateBtn {
@@ -319,7 +320,7 @@ footer {
     display: inline-block;
     transition: 0.3s; }
   #addNewItem:hover #addItemIcon {
-    transform: rotate(270deg) scale(2); }
+    transform: rotate(270deg) scale(1.5); }
   #addNewItem:hover #addItemText {
     opacity: 1;
     transform: translateX(20px); }

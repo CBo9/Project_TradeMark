@@ -254,6 +254,7 @@ $avatarSize:200px;
 .avatar{
 	width:$avatarSize;
 	height:$avatarSize;
+	object-fit: cover;
 	border-radius:$avatarSize/2;
 }
 
@@ -412,7 +413,7 @@ $addIconHeight:30px;
 	}
 	&:hover{
 		& #addItemIcon{
-			transform: rotate(270deg) scale(2);
+			transform: rotate(270deg) scale(1.5);
 		}
 		& #addItemText{
 			opacity:1;

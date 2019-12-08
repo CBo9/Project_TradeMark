@@ -13,6 +13,14 @@ ob_start() ?>
 </div>
 
 
+
+<?php if(isset($_SESSION['user']) AND $profile->getId() == $_SESSION['user']->getId()):?>
+	<div id="addNewItem">
+		<a id="addItemIcon" href="index.php?a=newItem">+</a>
+		<span id="addItemText">Ajouter un article</span>
+	</div>
+<?php endif;?>
+
 <?php if(!empty($items)):
 	echo '<div class="container-flex" id="ItemShelf">';
 	 foreach ($items as $item):?>
@@ -36,13 +44,10 @@ ob_start() ?>
 endif;
 
 if(empty($items)){
-	echo 'Aucun article pour le moment';
+	echo '<p>Aucun article pour le moment</p>';
 }?>
 
-<div id="addNewItem">
-	<a id="addItemIcon" href="index.php?a=newItem">+</a>
-	<span id="addItemText">Ajouter un article</span>
-</div>
+
 
 
 <?php
