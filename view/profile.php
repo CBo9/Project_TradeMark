@@ -14,11 +14,17 @@ ob_start() ?>
 
 
 
-<?php if(isset($_SESSION['user']) AND $profile->getId() == $_SESSION['user']->getId()):?>
-	<div id="addNewItem">
-		<a id="addItemIcon" href="index.php?a=newItem">+</a>
-		<span id="addItemText">Ajouter un article</span>
-	</div>
+<?php if(isset($_SESSION['user'])):
+	if($profile->getId() == $_SESSION['user']->getId()):?>
+		<div id="addNewItem">
+			<a id="addItemIcon" href="index.php?a=newItem">+</a>
+			<span id="addItemText">Ajouter un article</span>
+		</div>
+	<?php else:?>
+		<a href="index.php?a=chat&amp;userId=<?= $profile->getId();?>"><button>ENVOYER UN MESSAGE</button></a>
+	<?php endif;
+else:?>
+	<a href="index.php?a=connection">Connectez-vous pour pouvoir envoyer un message</a> 
 <?php endif;?>
 
 <?php if(!empty($items)):
