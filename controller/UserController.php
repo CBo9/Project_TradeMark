@@ -12,8 +12,9 @@ class UserController{
 			require_once'view/connection.php';	
 		}else{
 			if(isset($_FILES['avatar']) AND $_FILES['avatar']['error'] == 0){
-				if($_FILES['avatar']['size'] <= 1000000){
-					$filename = $user->getNickname() . basename($_FILES['avatar']['name']);
+				if($_FILES['avatar']['size'] <= 10000000){
+					$rawFilename = ucfirst($item->getName() . basename($_FILES['avatar']['name']));
+					$filename = preg_replace('/\s+/', '', $rawFilename);
 					move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
 					$user->setAvatar($filename);
 					$userManager->createUser($user);
@@ -67,7 +68,8 @@ class UserController{
 		$userManager = new UserManager();
 		if(isset($_FILES['avatar']) AND $_FILES['avatar']['error'] == 0){
 			if($_FILES['avatar']['size'] <= 1000000){
-					$filename = $user->getNickname() . basename($_FILES['avatar']['name']);
+					$rawFilename = ucfirst($item->getName() . basename($_FILES['avatar']['name']));
+					$filename = preg_replace('/\s+/', '', $rawFilename);
 					move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
 					$user->setAvatar($filename);
 			}else{

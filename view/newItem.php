@@ -1,6 +1,6 @@
 <?php
 
-$title = "Ajouter un article";
+$title = $titleAction . " un article";
 
 ob_start()?>
 
@@ -14,14 +14,23 @@ ob_start()?>
 	<label for="description">Description</label>
 	<textarea name="description" id="description" placeholder="Description rapide de votre article" required></textarea>
 
-	<label for="picture" class="inputFileButton">Ajouter une photo de votre article</label>
-	<input type="file" name="picture" id="picture" hidden accept=".png, .gif, .jpg" >
+	<label for="picture" class="inputFileButton">
+		<span id="addFileText">Ajouter une photo de votre article</span>
+		<img class="itemSmallPic " src="#" id="preview" alt=" ">
+	</label>
+	<input type="file" name="picture" id="picture" hidden accept=".png, .gif, .jpg" onchange="itemPicturePreview()">
 
 	<input type="submit" value="Ajouter un article">
 </form>
 
 <?php
 $content = ob_get_clean();
+
+if (isset($item)) :
+ob_start();?>
+<script> updateFormFill("<?= $item->getName()?>","<?= $item->getDescription()?>","<?= $item->getPicture();?>");</script>
+<?php $additionalScript = ob_get_clean();
+endif;
 
 require_once'view/mainTemplate.php';
 

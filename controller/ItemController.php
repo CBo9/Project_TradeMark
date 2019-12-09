@@ -46,8 +46,9 @@ class ItemController{
 		$itemManager = new ItemManager();
 
 		if(isset($_FILES['picture']) AND $_FILES['picture']['error'] == 0){
-				if($_FILES['picture']['size'] <= 1000000){
-					$filename = $item->getName() . basename($_FILES['picture']['name']);
+				if($_FILES['picture']['size'] <= 10000000){
+					$rawFilename = ucfirst($item->getName() . basename($_FILES['picture']['name']));
+					$filename = preg_replace('/\s+/', '', $rawFilename);
 					move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
 					$item->setPicture($filename);
 					$itemManager->createItem($item);
@@ -70,7 +71,8 @@ class ItemController{
 		if(isset($_SESSION['user']) AND $_SESSION['user']->getId() == $itemOwner){
 			if(isset($_FILES['picture']) AND $_FILES['picture']['error'] == 0){
 				if($_FILES['picture']['size'] <= 5000000){
-					$filename = $item->getName() . basename($_FILES['picture']['name']);
+					$rawFilename = ucfirst($item->getName() . basename($_FILES['picture']['name']));
+					$filename = preg_replace('/\s+/', '', $rawFilename);
 					move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
 					$item->setPicture($filename);
 					$previousPicture = $itemManager->getItemPicture($item->getId());

@@ -34,3 +34,59 @@ function sleep(ms) {
 function getChatWith(userId){
 	document.location.replace('./index.php?a=chat&userId='+userId);
 }
+
+function footer(){
+	var footer = document.getElementById('footer');
+	var footerHeight = footer.style.height;
+	var body = document.getElementById('body');
+	var bodyHeight = body.style.height;
+		if(bodyHeight == 900){
+			document.getElementById('container').style.minHeight = bodyHeight - footerHeight;
+		}
+	}
+	
+document.onload = footer();
+
+
+function updateFormFill(name, description, picture){
+	var inputName = document.getElementById('name');
+	var inputDescription = document.getElementById('description');
+	var picturePreview = document.getElementById('preview');
+
+	inputName.value = name;
+	inputDescription.innerHTML = description;
+	document.getElementById('addFileText').style.display="none";
+	picturePreview.style.display ="block";
+	picturePreview.src ="public/img/items/" + picture;
+}
+
+function itemPicturePreview(){
+    var reader = new FileReader();
+    reader.onload = function(){
+		var picturePreview = document.getElementById('preview');
+		picturePreview.src = reader.result;
+		document.getElementById('addFileText').style.display="none";
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+
+function itemPicturePreview(){
+    var reader = new FileReader();
+    reader.onload = function(){
+		var picturePreview = document.getElementById('preview');
+		picturePreview.src = reader.result;
+		document.getElementById('addFileText').style.display="none";
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+function avatarPreview(){
+	var reader = new FileReader();
+    reader.onload = function(){
+		var avatarPreview = document.getElementById('preview');
+		avatarPreview.src = reader.result;
+		document.getElementById('addFileText').style.display="none";
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}

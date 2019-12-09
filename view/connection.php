@@ -26,10 +26,12 @@ ob_start() ?>
 		<input type="password" id="password2" name="password2" placeholder="Confirmez votre mot de passe" required onchange="formValidation()">
 		<label id="passwordError"></label> 
 		<br><br><br>
-		<label for="avatar" class="inputFileButton">Choisir un avatar(Optionnel)</label>
-		<img src="#" id="avatarPreview" alt=" "> 
+		<label for="avatar" class="inputFileButton">
+			<span id="addFileText">Ajouter un avatar (optionnel)</span>
+			<img class="avatar " src="public/img/avatars/default.jpg" id="preview" alt=" ">
+		</label>
 		<br><br><br><br>
-		<input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg, .gif"  hidden>
+		<input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg, .gif"  hidden onchange="avatarPreview()">
 
 		<?php if(isset($signUpError)):?>
 			<span id="signUpError"><?= $signUpError;?></span>
