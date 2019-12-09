@@ -88,7 +88,9 @@ class UserController{
 		$userManager = new userManager();
 		$avatar = $userManager->getUserAvatar($userId);
 		$userManager->deleteUser($userId);
-		unlink("public/img/avatars/$avatar");
+		if($avatar != "default.jpg"){
+			unlink("public/img/avatars/" . $avatar);
+		}
 	}
 
 	function signOut(){

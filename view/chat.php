@@ -3,9 +3,10 @@ $title = "Chat avec". $otherUserName;
 
 ob_start() ?>
 
-<h1>Discuter avec <?= $otherUserName;?></h1>
+<h1 id="redirect">Discuter avec <?= $otherUserName;?></h1>
 <div id="chatContainer">
 	<div id="AllMessages">
+		<p>Ceci est le début de votre discussion avec  <?= $otherUserName;?></p>
 		<?php foreach ($messages as $message) :?>
 			<div class="messageContainer">
 				<a href="index.php?a=profile&amp;id=<?= $message->getSenderId();?>">
@@ -25,5 +26,7 @@ ob_start() ?>
 </div>
 <?php
 $content = ob_get_clean();
+
+$additionalScript = "<script>chatScroll()</script>";
 
 require_once'view/mainTemplate.php';

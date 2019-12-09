@@ -90,3 +90,15 @@ function avatarPreview(){
     }
     reader.readAsDataURL(event.target.files[0]);
 }
+
+
+function chatScroll(){
+	let chatWindow = document.getElementById('AllMessages');
+	let chatHeight = chatWindow.scrollHeight;
+	console.log(chatHeight);
+	chatWindow.scrollTo({
+	  top: chatHeight,
+	  left: 0,
+	  behavior: 'smooth'
+	});
+}
