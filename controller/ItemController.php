@@ -81,7 +81,7 @@ class ItemController{
 					$error = "La photo fournie est trop volumineuse";
 				}
 			}else{
-				$picture = $itemManager->getItemPicture($itemId);
+				$picture = $itemManager->getItemPicture($item->getId());
 				$item->setPicture($picture);
 			}
 			$itemManager->updateItem($item);

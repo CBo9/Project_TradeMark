@@ -9,28 +9,21 @@ ob_start() ?>
 		<h1>S'Inscrire</h1>
 		<label for="firstName">Prénom</label>
 		<input type="text" id="firstName" name="firstName" placeholder="Prénom" required>
-		<br><br>
 		<label for="lastName">Nom</label>
 		<input type="text" id="lastName" name="lastName" placeholder="Nom" required>
-		<br><br>
 		<label for="email">Email</label>
 		<input type="email" id="email" name="email" placeholder="Email" required>
-		<br><br>
 		<label for="nickname">Pseudo</label>
 		<input type="text" id="nickname" name="nickname" placeholder="Pseudo" required>
-		<br><br>
 		<label for="password">Mot de passe</label>
 		<input type="password" id="password1" name="password" placeholder="Mot de passe" required>
-		<br><br>
 		<label for="password2">Confirmation du mot de passe</label>
-		<input type="password" id="password2" name="password2" placeholder="Confirmez votre mot de passe" required onchange="formValidation()">
+		<input type="password" id="password2" name="password2" placeholder="Confirmez votre mot de passe" required oninput="formValidation()">
 		<label id="passwordError"></label> 
-		<br><br><br>
 		<label for="avatar" class="inputFileButton">
 			<span id="addFileText">Ajouter un avatar (optionnel)</span>
 			<img class="avatar " src="public/img/avatars/default.jpg" id="preview" alt=" ">
 		</label>
-		<br><br><br><br>
 		<input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg, .gif"  hidden onchange="avatarPreview()">
 
 		<?php if(isset($signUpError)):?>
@@ -44,10 +37,8 @@ ob_start() ?>
 		<h1>Se connecter</h1>
 		<label for="nickname">Pseudo</label>
 		<input type="text" id="nickname" name="nickname" placeholder="Pseudo">
-		<br><br>
 		<label for="password">Mot de passe</label>
 		<input type="password" id="password" name="password" placeholder="Mot de passe">
-		<br><br>
 		<input type="submit" value="SE CONNECTER">
 		<?php if(isset($error)):?>
 			<span id="connectionError"><?= $error;?></span>

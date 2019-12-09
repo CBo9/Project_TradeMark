@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="public/css/style.css" type="text/css">
     <title><?= $title ?></title>
 </head>
-<body>
+<body id="body">
 <!--barre de navigation-->
 	<div id="container">
 	    <nav id="navbar">
 	        <a  href="index.php">ACCUEIL</a>
-	        <a  href="index.php?a=connexion">LIVRES</a>
-	        <a  href="index.php?a=inscription">JEUX VIDÉOS</a>
+	        <!--<a  href="index.php?a=connexion">LIVRES</a>
+	        <a  href="index.php?a=inscription">JEUX VIDÉOS</a>-->
 	        <?php if(isset($_SESSION['user'])):?>
 	        	<a  href="index.php?a=support">SUPPORT</a>
 	        <?php endif; ?>
@@ -38,7 +38,7 @@
 	    	<?= $content ?>
 	    </div>
 
-	    <footer></footer>
+	    <footer id="footer"></footer>
 	</div>
 	
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -27,7 +27,7 @@ function formValidation(){
   }else{
     document.getElementById("passwordError").innerHTML = ""; 
   }
-document.getElementById("password1").addEventListener('change',formValidation);
+document.getElementById("password1").addEventListener('input',formValidation);
 }
 
 function suubmit(){
