@@ -47,12 +47,20 @@ class ItemController{
 
 		if(isset($_FILES['picture']) AND $_FILES['picture']['error'] == 0){
 				if($_FILES['picture']['size'] <= 10000000){
-					$rawFilename = ucfirst($item->getName() . basename($_FILES['picture']['name']));
-					$filename = preg_replace('/\s+/', '', $rawFilename);
-					move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
-					$item->setPicture($filename);
-					$itemManager->createItem($item);
-					header('location:index.php?a=profile&id='.$_SESSION['user']->getId());
+					$fileInfos = pathinfo($_FILES['picture']['name']);
+					$fileExtension = $fileInfos['extension'];
+					$allowedExtensions =['.png','.jpg','.jpeg','.gif'];
+					if(in_array($fileExtension, $allowedExtensions)){
+						$rawFilename = ucfirst($item->getName() . basename($_FILES['picture']['name']));
+						$filename = preg_replace('/\s+/', '', $rawFilename);
+						move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
+						$item->setPicture($filename);
+						$itemManager->createItem($item);
+						header('location:index.php?a=profile&id='.$_SESSION['user']->getId());
+					}else{
+						$pictureError = "Fichier non autorisé. Extensions autorisées : .jpg, .gif, .jpeg, .png";
+						require_once'view/newItem.php';
+					}
 				}else{
 					$pictureError = "Le fichier transmis dépasse la limite autorisée(1Mo)";
 					require_once'view/newItem.php';
@@ -71,12 +79,19 @@ class ItemController{
 		if(isset($_SESSION['user']) AND $_SESSION['user']->getId() == $itemOwner){
 			if(isset($_FILES['picture']) AND $_FILES['picture']['error'] == 0){
 				if($_FILES['picture']['size'] <= 5000000){
-					$rawFilename = ucfirst($item->getName() . basename($_FILES['picture']['name']));
-					$filename = preg_replace('/\s+/', '', $rawFilename);
-					move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
-					$item->setPicture($filename);
-					$previousPicture = $itemManager->getItemPicture($item->getId());
-					unlink('public/img/items/'.$previousPicture);
+					$fileInfos = pathinfo($_FILES['picture']['name']);
+					$fileExtension = $fileInfos['extension'];
+					$allowedExtensions =['.png','.jpg','.jpeg','.gif'];
+					if(in_array($fileExtension, $allowedExtensions)){
+						$rawFilename = ucfirst($item->getName() . basename($_FILES['picture']['name']));
+						$filename = preg_replace('/\s+/', '', $rawFilename);
+						move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
+						$item->setPicture($filename);
+						$previousPicture = $itemManager->getItemPicture($item->getId());
+						unlink('public/img/items/' . $previousPicture);
+					}else{
+						$error = "Fichier non autorisé. Extensions autorisées : .jpg, .gif, .jpeg, .png";
+					}
 				}else{
 					$error = "La photo fournie est trop volumineuse";
 				}

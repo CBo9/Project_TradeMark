@@ -12,12 +12,20 @@ class UserController{
 			require_once'view/connection.php';	
 		}else{
 			if(isset($_FILES['avatar']) AND $_FILES['avatar']['error'] == 0){
-				if($_FILES['avatar']['size'] <= 10000000){
-					$rawFilename = ucfirst($item->getName() . basename($_FILES['avatar']['name']));
-					$filename = preg_replace('/\s+/', '', $rawFilename);
-					move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
-					$user->setAvatar($filename);
-					$userManager->createUser($user);
+				if($_FILES['avatar']['size'] <= 5000000){
+					$fileInfos = pathinfo($_FILES['avatar']['name']);
+					$fileExtension = $fileInfos['extension'];
+					$allowedExtensions =['.png','.jpg','.jpeg','.gif'];
+					if(in_array($fileExtension, $allowedExtensions)){		
+						$rawFilename = ucfirst($item->getName() . basename($_FILES['avatar']['name']));
+						$filename = preg_replace('/\s+/', '', $rawFilename);
+						move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
+						$user->setAvatar($filename);
+						$userManager->createUser($user);
+					}else{
+							$signUpError = "Le format du fichier transmis n'est pas autorisé.Formats autorisés: jpg, png, jpeg, gif";
+							require_once'view/connection.php';
+					}
 				}else{
 					$signUpError = "Le fichier transmis dépasse la limite autorisée(1Mo)";
 					require_once'view/connection.php';
@@ -67,14 +75,22 @@ class UserController{
 		$user->setId($_SESSION['user']->getId());
 		$userManager = new UserManager();
 		if(isset($_FILES['avatar']) AND $_FILES['avatar']['error'] == 0){
-			if($_FILES['avatar']['size'] <= 1000000){
-					$rawFilename = ucfirst($item->getName() . basename($_FILES['avatar']['name']));
-					$filename = preg_replace('/\s+/', '', $rawFilename);
-					move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
-					$user->setAvatar($filename);
+			if($_FILES['avatar']['size'] <= 5000000){
+					$fileInfos = pathinfo($_FILES['avatar']['name']);
+					$fileExtension = $fileInfos['extension'];
+					$allowedExtensions =['.png','.jpg','.jpeg','.gif'];
+					if(in_array($fileExtension, $allowedExtensions)){	
+						$rawFilename = ucfirst($item->getName() . basename($_FILES['avatar']['name']));
+						$filename = preg_replace('/\s+/', '', $rawFilename);
+						move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
+						$user->setAvatar($filename);
+					}else{
+						$formError = "Le format du fichier transmis n'est pas autorisé.Formats autorisés: jpg, png, jpeg, gif";
+						require_once'view/profile.php';
+					}
 			}else{
-					$formError = "Le fichier transmis dépasse la limite autorisée(1Mo)";
-					require_once'view/profile.php';
+				$formError = "Le fichier transmis dépasse la limite autorisée(1Mo)";
+				require_once'view/profile.php';
 			}
 		}else{
 			$avatar = $userManager->getUserAvatar($user->getId());
