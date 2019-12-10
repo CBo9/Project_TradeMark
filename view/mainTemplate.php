@@ -23,7 +23,7 @@
 		        		<ul id="userNav">
 		        			<a href="index.php?a=profile&amp;id=<?= $_SESSION['user']->getId();?>"><li id="link1">Mon Profil</li></a>
 		        			<a href="index.php?a=myChats"><li id="link2">Mes messages</li></a>
-		        			<a href="index.php?a=manageItems"><li id="link3">Gérer mes articles</li></a>
+		        			<a href="index.php?a=settings"><li id="link3">Paramètres</li></a>
 		        			<a onclick="signOutConfirm()"><li id="link4">Déconnexion</li></a>
 		        		</ul>
 		        	</div>

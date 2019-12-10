@@ -117,6 +117,9 @@ if(!empty($_GET)){
             default:
                 require 'view/404.php';
                 break;
+            case 'settings':
+                require_once 'view/settings.php';
+                break;
         }
     }else{
         require 'view/404.php';
