@@ -21,7 +21,7 @@ ob_start() ?>
 			<span id="addItemText">Ajouter un article</span>
 		</div>
 	<?php else:?>
-		<a href="index.php?a=chat&amp;userId=<?= $profile->getId();?>"><button>ENVOYER UN MESSAGE</button></a>
+		<a class="updateBtn" href="index.php?a=chat&amp;userId=<?= $profile->getId();?>">ENVOYER UN MESSAGE</a>
 	<?php endif;
 else:?>
 	<a href="index.php?a=connection">Connectez-vous pour pouvoir envoyer un message</a> 

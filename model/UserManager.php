@@ -22,11 +22,14 @@ class UserManager extends Manager{
 		return $member;
 	}
 
-	function getUserById($id){
+	function  getUserById($id){
 		$db = $this->dbConnect();
-		$user = $db->prepare('SELECT * FROM users WHERE id = :id');
-		$user->execute(["id"=>$id]);
-		return $user;
+		$request = $db->prepare('SELECT * FROM users WHERE id = :id');
+		$request->execute(["id"=>$id]);
+		if($data = $request->fetch()){
+			$user = new User($data);
+			return $user;
+		}
 	}
 
 	function updateUser(User $user){
@@ -62,6 +65,15 @@ class UserManager extends Manager{
 			$nickname = $user['nickname'];
 			return $nickname;
 		}
+	}
+
+	function countAllUsers(){
+		$db = $this->dbConnect();
+		$request = $db->prepare(" SELECT COUNT(*) as count FROM users");
+		$request->execute();
+		$data = $request->fetch();
+		$count = $data['count'];
+		return $count;
 	}
 	
 }

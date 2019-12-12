@@ -23,7 +23,11 @@ ob_start()?>
 	<input type="submit" value="Ajouter un article">
 </form>
 
+
 <?php
+if (isset($pictureError)) {
+	echo $pictureError;
+}
 $content = ob_get_clean();
 
 if (isset($item)) :

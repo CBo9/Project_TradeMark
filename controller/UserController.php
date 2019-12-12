@@ -15,9 +15,9 @@ class UserController{
 				if($_FILES['avatar']['size'] <= 5000000){
 					$fileInfos = pathinfo($_FILES['avatar']['name']);
 					$fileExtension = $fileInfos['extension'];
-					$allowedExtensions =['.png','.jpg','.jpeg','.gif'];
+					$allowedExtensions =['png','jpg','jpeg','gif'];
 					if(in_array($fileExtension, $allowedExtensions)){		
-						$rawFilename = ucfirst($item->getName() . basename($_FILES['avatar']['name']));
+						$rawFilename = ucfirst($user->getNickname() . basename($_FILES['avatar']['name']));
 						$filename = preg_replace('/\s+/', '', $rawFilename);
 						move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
 						$user->setAvatar($filename);
@@ -57,10 +57,7 @@ class UserController{
 
 	function viewProfile($id){
 		$userManager = new UserManager();
-		$userData = $userManager->getUserById($id);
-		if($userData = $userData->fetch()){
-			$profile = new User($userData);
-
+		if($profile = $userManager->getUserById($id)){ 
 			$itemManager = new ItemManager();
 			$items = $itemManager->getItemsByUser($profile->getId());
 			require_once 'view/profile.php';
@@ -78,12 +75,16 @@ class UserController{
 			if($_FILES['avatar']['size'] <= 5000000){
 					$fileInfos = pathinfo($_FILES['avatar']['name']);
 					$fileExtension = $fileInfos['extension'];
-					$allowedExtensions =['.png','.jpg','.jpeg','.gif'];
+					$allowedExtensions =['png','jpg','jpeg','gif'];
 					if(in_array($fileExtension, $allowedExtensions)){	
-						$rawFilename = ucfirst($item->getName() . basename($_FILES['avatar']['name']));
+						$rawFilename = ucfirst($user->getNickname() . basename($_FILES['avatar']['name']));
 						$filename = preg_replace('/\s+/', '', $rawFilename);
 						move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
 						$user->setAvatar($filename);
+						$previousAvatar = $userManager->getUserAvatar($user->getId());
+						if($previousAvatar != "default.jpg"){
+							unlink('public/img/items/' . $previousPicture);
+						}
 					}else{
 						$formError = "Le format du fichier transmis n'est pas autorisé.Formats autorisés: jpg, png, jpeg, gif";
 						require_once'view/profile.php';
@@ -112,5 +113,18 @@ class UserController{
 	function signOut(){
 		session_destroy();
 		header('location:index.php?a=connection');
+	}
+
+	function viewAccount(){
+		if (!isset($_SESSION['user'])) {
+			require_once'view/404.php';
+		}else{
+			$supportManager = new SupportManager();
+			if($supportRequests = $supportManager->getRequestsByUser()){
+				require_once'view/account.php';
+			}else{
+				require_once'view/account.php';
+			}
+		}
 	}
 }

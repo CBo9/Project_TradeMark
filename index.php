@@ -114,11 +114,13 @@ if(!empty($_GET)){
                     require_once 'view/404.php';
                 }
                 break;
+            case 'myAccount':
+                $userController->viewAccount();
+                break;
+            case 'deleteAccount':
+                $userController->deleteAccount();
             default:
                 require 'view/404.php';
-                break;
-            case 'settings':
-                require_once 'view/settings.php';
                 break;
         }
     }else{

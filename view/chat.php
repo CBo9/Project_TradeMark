@@ -1,5 +1,5 @@
 <?php
-$title = "Chat avec". $otherUserName;
+$title = "Chat avec ". $otherUserName;
 
 ob_start() ?>
 
