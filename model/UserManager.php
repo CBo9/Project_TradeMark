@@ -75,5 +75,16 @@ class UserManager extends Manager{
 		$count = $data['count'];
 		return $count;
 	}
+
+	function getAllUsers(){
+		$db = $this->dbConnect();
+		$request = $db->prepare('SELECT * FROM users');
+		$request->execute();
+		while($userData = $request->fetch()){
+			$user = new User($userData);
+			$allUsers[] = $user;
+		}
+		return $allUsers;
+	}
 	
 }

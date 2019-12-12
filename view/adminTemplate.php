@@ -40,19 +40,6 @@
 	    <div id="mainContent">
 	    	<?= $content ?>
 	    </div>
-
-	    <footer id="footer">
-	    	<ul>
-	    		<li><a href="#">FAQ</a></li>
-	    		<li><a href="#">Support</a></li>
-	    		<li><a href="#">A propos</a></li>
-	    		<li><a href="#">Jobs</a></li>
-	    	</ul>
-	    	<ul>
-	    		<li>Crée par Clément</li>
-	    		<li><a href="https://github.com/CBo9/Project-IcyLight">Voir le projet sur GitHub</a></li>
-	    	</ul>
-	    </footer>
 	</div>
 	
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

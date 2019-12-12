@@ -266,11 +266,20 @@ $itemsPerRow:3;
 	}
 }
 $avatarSize:200px;
+$smallAvatarSize:100px;
 .avatar{
 	width:$avatarSize;
 	height:$avatarSize;
 	object-fit: cover;
 	border-radius:$avatarSize/2;
+	user-select: none;
+}
+
+.smallAvatar{
+	width:$smallAvatarSize;
+	height:$smallAvatarSize;
+	object-fit: cover;
+	border-radius:$smallAvatarSize/2;
 	user-select: none;
 }
 
@@ -283,6 +292,7 @@ $avatarSize:200px;
 	text-decoration: none;
 	cursor:pointer;
 	border:solid 2px rgba(0,0,0,0.4);
+	user-select: none;
 }
 
 $deleteBtnBgColor:red;
@@ -382,10 +392,11 @@ $updateBtnBgColor:#27a10b;
 
 #lastItemsAdded{
 	max-height:100%;
+	height: fit-content;
 	border:4px solid white;
 	border-radius:5px;
 	padding:0 10px;
-	width: 40% !important;
+	width: 400px;
 	& .lastItem{
 		background-color:red ;
 		margin: 10px 0;
@@ -398,6 +409,7 @@ $updateBtnBgColor:#27a10b;
 #maincontent{
 	display: flex; 
 	margin:0 5%;
+	justify-content: space-between;
 	& h1, h2{
 		text-decoration: underline;
 	}
@@ -436,4 +448,36 @@ $addIconHeight:30px;
 			transform: translateX(20px);
 		}
 	} 
+}
+
+#plusIcon{
+		height:$addIconHeight;
+		width: $addIconHeight;
+		border-radius:1em;
+		border:solid 3px white;
+		display: inline-block;
+		color:white;
+		text-align:center;
+		text-decoration: none;
+		line-height:$addIconHeight;
+		font-size:2em;
+		transition:0.3s;
+		margin:0 10px;
+		cursor:pointer;
+		user-select: none;
+		&:hover{
+			transform: rotate(270deg) scale(1.5);
+		}
+}
+
+.adminTable{
+	width: 100%;
+	&,td{
+		border-top:1px solid white;
+		border-collapse: collapse;
+	}
+	& td{
+		padding:5px;
+		width:fit-content;
+	}
 }

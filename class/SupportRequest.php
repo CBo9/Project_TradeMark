@@ -3,7 +3,8 @@
 class SupportRequest extends Generic{
 
 	private $id;
-	private $userId;
+    private $userId;
+	private $userName;
 	private $title;
 	private $request;
 	private $startDate;
@@ -36,6 +37,18 @@ class SupportRequest extends Generic{
     public function setUserId($userId)
     {
         $this->userId = $userId;
+
+        return $this;
+    }
+
+    public function getUserName()
+    {
+        return $this->userName;
+    }
+
+    public function setUserName($userName)
+    {
+        $this->userName = $userName;
 
         return $this;
     }

@@ -16,6 +16,7 @@ $userController = new UserController();
 $supportController = new SupportController();
 $chatController = new ChatController();
 $itemController = new ItemController();
+$adminController = new AdminController();
 
 /*------- INDEX ROUTERS/TO CONTROLLERS -------*/
 if(!empty($_GET)){
@@ -119,6 +120,16 @@ if(!empty($_GET)){
                 break;
             case 'deleteAccount':
                 $userController->deleteAccount();
+            /*------ADMIN------*/
+            case 'adminHome':
+                $adminController->viewHome();
+                break;
+            case 'viewAllMembers':
+                $adminController->showAllMembers();
+                break;
+            case 'viewAllRequests':
+                $adminController->showAllRequests();
+                break;
             default:
                 require 'view/404.php';
                 break;

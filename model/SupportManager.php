@@ -61,4 +61,33 @@ class SupportManager extends Manager{
 		}
 		return $supportRequests;
 	}
+
+	function countAllRequests(){
+		$db = $this->dbConnect();
+		$request = $db->prepare(" SELECT COUNT(*) as count FROM support");
+		$request->execute();
+		$data = $request->fetch();
+		$count = $data['count'];
+		return $count;
+	}
+
+	function countRequestsByStatus($status){
+		$db = $this->dbConnect();
+		$request = $db->prepare(" SELECT COUNT(*) as count FROM support WHERE status = :status");
+		$request->execute(["status"=>$status]);
+		$data = $request->fetch();
+		$count = $data['count'];
+		return $count;
+	}
+
+	function getAllRequests(){
+		$db = $this->dbConnect();
+		$support = $db->prepare('SELECT support.*, users.nickname as userName FROM support INNER JOIN users ON support.userId = users.id ');
+		$support->execute();
+		while($requestData = $support->fetch()){
+			$request = new SupportRequest($requestData);
+			$allRequests[] = $request;
+		}
+		return $allRequests;
+	}
 } 
