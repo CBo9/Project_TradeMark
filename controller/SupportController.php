@@ -11,7 +11,7 @@ class SupportController{
 		$request = new SupportRequest($_POST);
 		$request->setUserId($_SESSION['user']->getId());
 		$supportManager = new SupportManager();
-		$supportManager->newRequest($request);
+		$supportManager->createRequest($request);
 	}
 
 	function viewRequest($reqId){
