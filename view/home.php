@@ -6,7 +6,7 @@ ob_start() ?>
 <div id="maincontent">
 	
 	<div id="siteHowTo">
-		<h1>Bienvenue sur le site</h1>
+		<h1>Déjà <?= $usersNumber;?> membres ont mis en ligne <?= $itemsNumber;?> objets!</h1>
 
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in magna nibh. Mauris at fermentum est. Nullam sodales odio urna, ut consequat massa volutpat non. Morbi sem ex, blandit at metus vitae, aliquam vestibulum lectus. Suspendisse at nisi lacus. Fusce ac luctus enim, non ultrices sem. In molestie libero eu tellus molestie pellentesque. Praesent tempor nisl vel tempus porta. Proin ullamcorper, dolor eget euismod rutrum, nibh arcu eleifend risus, sed bibendum justo erat nec tellus. In volutpat aliquam lorem, ac pulvinar risus accumsan non. Nullam eu ultricies justo. Pellentesque tincidunt quam turpis, et interdum metus volutpat ut. Curabitur vel ligula augue. Donec maximus lacus non sapien molestie, a tincidunt erat efficitur. Duis purus quam, dictum eget sodales et, lacinia vitae orci. Maecenas eget iaculis nisi, et auctor augue.</p>
 

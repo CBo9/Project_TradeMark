@@ -12,6 +12,10 @@ class ItemController{
 	function showHome(){
 		$itemManager = new ItemManager();
 		$lastItems = $itemManager->getLastItems(5);
+		$itemsNumber = $itemManager->countAllItems();
+
+		$userManager = new UserManager();
+		$usersNumber = $userManager->countAllUsers();
 		require_once'view/home.php';
 	}
 
@@ -49,7 +53,7 @@ class ItemController{
 				if($_FILES['picture']['size'] <= 10000000){
 					$fileInfos = pathinfo($_FILES['picture']['name']);
 					$fileExtension = $fileInfos['extension'];
-					$allowedExtensions =['.png','.jpg','.jpeg','.gif'];
+					$allowedExtensions =['png','jpg','jpeg','gif'];
 					if(in_array($fileExtension, $allowedExtensions)){
 						$rawFilename = ucfirst($item->getName() . basename($_FILES['picture']['name']));
 						$filename = preg_replace('/\s+/', '', $rawFilename);
@@ -81,7 +85,7 @@ class ItemController{
 				if($_FILES['picture']['size'] <= 5000000){
 					$fileInfos = pathinfo($_FILES['picture']['name']);
 					$fileExtension = $fileInfos['extension'];
-					$allowedExtensions =['.png','.jpg','.jpeg','.gif'];
+					$allowedExtensions =['png','jpg','jpeg','gif'];
 					if(in_array($fileExtension, $allowedExtensions)){
 						$rawFilename = ucfirst($item->getName() . basename($_FILES['picture']['name']));
 						$filename = preg_replace('/\s+/', '', $rawFilename);

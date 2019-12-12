@@ -76,4 +76,13 @@ class ItemManager extends Manager{
 		}
 		return $items;
 	}
+
+	function countAllItems(){
+		$db = $this->dbConnect();
+		$request = $db->prepare(" SELECT COUNT(*) as count FROM items");
+		$request->execute();
+		$data = $request->fetch();
+		$count = $data['count'];
+		return $count;
+	}
 }
