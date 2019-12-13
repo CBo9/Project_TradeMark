@@ -53,9 +53,6 @@ if(empty($items)){
 	echo '<p>Aucun article pour le moment</p>';
 }?>
 
-
-
-
 <?php
 $content = ob_get_clean();
 require_once 'view/mainTemplate.php';
