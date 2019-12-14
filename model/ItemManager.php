@@ -4,11 +4,11 @@ class ItemManager extends Manager{
 
 	function createItem(Item $item){
 		$db = $this->dbConnect();
-		$insertion = $db->prepare("INSERT INTO items (ownerId, name, description, picture) VALUES (:ownerId, :name, :description, :picture)");
-		$insertion->execute(["ownerId"=>$_SESSION['user']->getId(),
-							 "name"=>$item->getName(),
-							 "description"=>$item->getDescription(),
-							 "picture"=>$item->getPicture()]);
+		$insert = $db->prepare("INSERT INTO items (name, description, picture, ownerId) VALUES(:name, :descr, :pic, :ownerId)");
+		$insert->execute(["name"=>$item->getName(),
+						  "descr"=>$item->getDescription(),
+						  "pic"=>$item->getPicture(),
+						  "ownerId"=>$item->getOwnerId()]);
 	}
 
 	function updateItem(Item $item){

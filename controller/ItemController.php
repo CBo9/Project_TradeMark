@@ -46,21 +46,24 @@ class ItemController{
 
 	/*------ITEM ACTIONS------*/
 	function addItem(){
-		$item = new Item($_POST);
 		$itemManager = new ItemManager();
-
+		$item = new Item($_POST);
+		$item->setOwnerId($_SESSION['user']->getId());
+		
 		if(isset($_FILES['picture']) AND $_FILES['picture']['error'] == 0){
 				if($_FILES['picture']['size'] <= 10000000){
 					$fileInfos = pathinfo($_FILES['picture']['name']);
 					$fileExtension = $fileInfos['extension'];
 					$allowedExtensions =['png','jpg','jpeg','gif'];
 					if(in_array($fileExtension, $allowedExtensions)){
-						$rawFilename = ucfirst($item->getName() . basename($_FILES['picture']['name']));
+						$now = new Datetime();
+						$date = $now->format("dmY_His");
+						$rawFilename = ucfirst($date . $item->getOwnerId() . basename($_FILES['picture']['name']));
 						$filename = preg_replace('/\s+/', '', $rawFilename);
 						move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
 						$item->setPicture($filename);
 						$itemManager->createItem($item);
-						header('location:index.php?a=profile&id='.$_SESSION['user']->getId());
+						header('location:index.php?a=profile&id='.$item->getOwnerId());
 					}else{
 						$pictureError = "Fichier non autorisé. Extensions autorisées : .jpg, .gif, .jpeg, .png";
 						require_once'view/newItem.php';
@@ -80,14 +83,18 @@ class ItemController{
 		$item = new Item($_POST);
 		$item->setId($itemId);
 		$itemOwner = $itemManager->getUserIdByItem($itemId);
+		$item->setOwnerId($itemOwner);
+
 		if(isset($_SESSION['user']) AND $_SESSION['user']->getId() == $itemOwner){
 			if(isset($_FILES['picture']) AND $_FILES['picture']['error'] == 0){
-				if($_FILES['picture']['size'] <= 5000000){
+				if($_FILES['picture']['size'] <= 10000000){
 					$fileInfos = pathinfo($_FILES['picture']['name']);
 					$fileExtension = $fileInfos['extension'];
 					$allowedExtensions =['png','jpg','jpeg','gif'];
 					if(in_array($fileExtension, $allowedExtensions)){
-						$rawFilename = ucfirst($item->getName() . basename($_FILES['picture']['name']));
+						$now = new Datetime();
+						$date = $now->format("dmY_His");
+						$rawFilename = ucfirst($date . $item->getOwnerId() . basename($_FILES['picture']['name']));
 						$filename = preg_replace('/\s+/', '', $rawFilename);
 						move_uploaded_file($_FILES['picture']['tmp_name'], 'public/img/items/' . $filename);
 						$item->setPicture($filename);

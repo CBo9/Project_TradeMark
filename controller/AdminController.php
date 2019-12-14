@@ -2,32 +2,54 @@
 
 class AdminController{
 
+	function isAdmin(){
+		if(isset($_SESSION['user']) AND $_SESSION['user']->getStatus() == "admin" ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	function viewHome(){
-		$itemManager = new ItemManager();
-		$itemsNumber = $itemManager->countAllItems();
+		if($this->isAdmin()){
+			$itemManager = new ItemManager();
+			$itemsNumber = $itemManager->countAllItems();
 
-		$userManager = new UserManager();
-		$usersTotal = $userManager->countAllUsers();
+			$userManager = new UserManager();
+			$usersTotal = $userManager->countAllUsers();
 
-		$supportManager = new SupportManager();
-		$requestsTotal = $supportManager->countAllRequests();
-		$reqWaitingAdmin = $supportManager->countRequestsByStatus('Waiting for Admin');
-		require_once'view/adminHome.php';
+			$supportManager = new SupportManager();
+			$requestsTotal = $supportManager->countAllRequests();
+			$reqWaitingAdmin = $supportManager->countRequestsByStatus('Waiting for Admin');
+			require_once'view/adminHome.php';
+		}else{
+			require_once'view/404.php';
+		}
 	}
 
 	function showAllMembers(){
-		$userManager = new UserManager();
-		$allMembers = $userManager->getAllUsers();
+		if($this->isAdmin()){
+			$userManager = new UserManager();
+			$allMembers = $userManager->getAllUsers();
 
-		$objectType = "membres";
-		require_once'view/adminTable.php';
+			$objectType = "membres";
+			require_once'view/adminTable.php';
+		}else{
+			require_once'view/404.php';
+		}
 	}
 
 	function showAllRequests(){
-		$supportManager = new SupportManager();
-		$allRequests = $supportManager->getAllRequests();
+		if($this->isAdmin()){
+			$supportManager = new SupportManager();
+			$allRequests = $supportManager->getAllRequests();
 
-		$objectType = "requêtes";
-		require_once'view/adminTable.php';
+			$objectType = "requêtes";
+			require_once'view/adminTable.php';
+		}else{
+			require_once'view/404.php';
+		}
 	}
+
+
 }

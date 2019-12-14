@@ -89,6 +89,8 @@ function avatarPreview(){
 		document.getElementById('addFileText').style.display="none";
     }
     reader.readAsDataURL(event.target.files[0]);
+
+    document.getElementById('emptyAvatar').innerHTML = "ANNULER";
 }
 
 
@@ -99,6 +101,12 @@ function chatScroll(){
 	chatWindow.scrollTo({
 	  top: chatHeight,
 	  left: 0,
-	  behavior: 'smooth'
+	 
 	});
+}
+
+function deleteFile(){
+	document.getElementById('emptyAvatar').innerHTML = "Avatar par défaut";
+	document.getElementById('avatar').value="";
+	document.getElementById('preview').src="public/img/avatars/default.jpg";
 }

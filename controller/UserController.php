@@ -9,7 +9,6 @@ class UserController{
 		$confirmNickname = $userManager->getUserByNick($user);
 		if($nicknameTaken = $confirmNickname->fetch()){
 			$signUpError = "Ce pseudo est déjà utilisé";
-			require_once'view/connection.php';	
 		}else{
 			if(isset($_FILES['avatar']) AND $_FILES['avatar']['error'] == 0){
 				if($_FILES['avatar']['size'] <= 5000000){
@@ -17,23 +16,24 @@ class UserController{
 					$fileExtension = $fileInfos['extension'];
 					$allowedExtensions =['png','jpg','jpeg','gif'];
 					if(in_array($fileExtension, $allowedExtensions)){		
-						$rawFilename = ucfirst($user->getNickname() . basename($_FILES['avatar']['name']));
+						$rawFilename = ucfirst('user_avatar'. $user->getNickname() . basename($_FILES['avatar']['name']));
 						$filename = preg_replace('/\s+/', '', $rawFilename);
 						move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
 						$user->setAvatar($filename);
-						$userManager->createUser($user);
 					}else{
 							$signUpError = "Le format du fichier transmis n'est pas autorisé.Formats autorisés: jpg, png, jpeg, gif";
-							require_once'view/connection.php';
 					}
 				}else{
 					$signUpError = "Le fichier transmis dépasse la limite autorisée(1Mo)";
-					require_once'view/connection.php';
 				}
-			}else{
-				$userManager->createUser($user);
 			}
+			if($userManager->createUser($user)){
+				$additionalScript = "<script>alert('Votre inscritpion est complétée.Vous pouvez désormais vous connecter');</script>";
+			}else{
+				$signUpError = "Une erreur inconnue est survenue. Veuillez réésayer ou contactez-nous";
+			}	
 		}    
+		require_once'view/connection.php';
 	}
 
 	function signIn(){
@@ -77,7 +77,7 @@ class UserController{
 					$fileExtension = $fileInfos['extension'];
 					$allowedExtensions =['png','jpg','jpeg','gif'];
 					if(in_array($fileExtension, $allowedExtensions)){	
-						$rawFilename = ucfirst($user->getNickname() . basename($_FILES['avatar']['name']));
+						$rawFilename = ucfirst('user_avatar'. $user->getNickname() . basename($_FILES['avatar']['name']));
 						$filename = preg_replace('/\s+/', '', $rawFilename);
 						move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
 						$user->setAvatar($filename);
