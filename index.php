@@ -119,7 +119,12 @@ if(!empty($_GET)){
                 $userController->viewAccount();
                 break;
             case 'deleteAccount':
-                $userController->deleteAccount();
+                if(isset($_SESSION['user']) AND isset($id)){
+                    $userController->deleteAccount($id);
+                }else{
+                    require_once'view/404.php';
+                }
+                break;
             /*------ADMIN------*/
             case 'adminHome':
                 $adminController->viewHome();

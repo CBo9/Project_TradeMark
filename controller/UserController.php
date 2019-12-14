@@ -102,12 +102,26 @@ class UserController{
 	}
 
 	function deleteAccount($userId){
-		$userManager = new userManager();
-		$avatar = $userManager->getUserAvatar($userId);
-		$userManager->deleteUser($userId);
-		if($avatar != "default.jpg"){
-			unlink("public/img/avatars/" . $avatar);
-		}
+		if($userId == $_SESSION['user']->getId() OR $_SESSION['user']->getStatus() == "admin"){
+			$userManager = new userManager();
+			$member = $userManager->getUserById($userId);
+			if($member->getAvatar() != "default.jpg"){
+				unlink("public/img/avatars/" . $member->getAvatar());
+			}
+
+			$itemManager= new ItemManager();
+			if($items = $itemManager->getItemsByUser($userId)){
+				foreach ($items as $item) {
+					unlink("public/img/items/" . $item->getPicture());
+				}
+			}
+
+			$userManager->deleteUser($userId);
+			header("location: index.php?a=signOut");
+		}else{
+			require_once'view/404.php';
+		*/}
+
 	}
 
 	function signOut(){

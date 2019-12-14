@@ -11,7 +11,7 @@
 	<div id="container">
 	    <nav id="navbar">
 	        <a  href="index.php">ACCUEIL</a>
-	        
+	        <a href=index.php?a=market>MARCHÉ</a>
 	        <?php if(isset($_SESSION['user'])):?>
 	        	<a  href="index.php?a=support">SUPPORT</a>
 	        	<?php if ($_SESSION['user']->getStatus() == 'admin'):?>

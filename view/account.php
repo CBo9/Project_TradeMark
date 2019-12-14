@@ -59,7 +59,7 @@ ob_start()?>
 	<a href="index.php?a=support" class="updateBtn">Envoyer une requête au support</a>	
 	</div>
 
-	<a href="index.php?a=deleteAccount" class="deleteBtn">Supprimer mon compte</a>
+	<a href="index.php?a=deleteAccount&id=<?= $_SESSION['user']->getId()?>" class="deleteBtn">Supprimer mon compte</a>
 </div>
 <?php
 $content = ob_get_clean();
