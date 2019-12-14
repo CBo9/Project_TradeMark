@@ -74,6 +74,13 @@ if(!empty($_GET)){
                     require_once'view/404.php';
                 }
                 break;
+            case 'updateUser':
+                if(isset($id)){
+                    $userController->updateUser($id);
+                }else{
+                    require_once'view/404.php';
+                }
+                break;
             case 'sendMessage':
                 if(isset($userId)){
                     $chatController->sendChatMessage($userId);

@@ -40,7 +40,7 @@ class UserManager extends Manager{
 						  "firstN"=>$user->getFirstName(),
 						  "lastN"=>$user->getLastName(),
 						  "email"=>$user->getEmail(),
-						  "password"=>$user->getPassword(),
+						  "password"=>password_hash($user->getPassword(), PASSWORD_DEFAULT),
 						  "avatar"=>$user->getAvatar(),
 						  "userId"=>$_SESSION['user']->getId()]);
 	}

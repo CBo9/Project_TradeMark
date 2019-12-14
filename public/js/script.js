@@ -110,3 +110,11 @@ function deleteFile(){
 	document.getElementById('avatar').value="";
 	document.getElementById('preview').src="public/img/avatars/default.jpg";
 }
+
+function deleteAccount(userId){
+	var deleteAccount = confirm('Voulez-vous vraiment supprimer votre compte? \nVos informations et vos articles seront supprimés définitivement');
+	if(deleteAccount == true){
+		document.location.replace('index.php?a=deleteAccount&id='+userId);
+	}
+
+}

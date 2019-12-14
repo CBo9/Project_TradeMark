@@ -6,7 +6,7 @@ ob_start()?>
 
 <h1>Mon compte</h1>
 <div class="container-flex" id="accountSettings">
-	<form method="post" action="index.php?a=" id ="signUpForm" class="redBgForm" enctype="multipart/form-data" onsubmit="return suubmit()">
+	<form method="post" action="index.php?a=updateUser&id=<?= $_SESSION['user']->getId()?>" id ="signUpForm" class="redBgForm" enctype="multipart/form-data" >
 		<h1>MES INFORMATIONS</h1>
 
 		<label for="firstName">Prénom</label>
@@ -59,7 +59,7 @@ ob_start()?>
 	<a href="index.php?a=support" class="updateBtn">Envoyer une requête au support</a>	
 	</div>
 
-	<a href="index.php?a=deleteAccount&id=<?= $_SESSION['user']->getId()?>" class="deleteBtn">Supprimer mon compte</a>
+	<a id="deleteBtn" class="deleteBtn" onclick="deleteAccount(<?= $_SESSION['user']->getId()?>)">Supprimer mon compte</a>
 </div>
 <?php
 $content = ob_get_clean();

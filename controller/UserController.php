@@ -24,7 +24,7 @@ class UserController{
 							$signUpError = "Le format du fichier transmis n'est pas autorisé.Formats autorisés: jpg, png, jpeg, gif";
 					}
 				}else{
-					$signUpError = "Le fichier transmis dépasse la limite autorisée(1Mo)";
+					$signUpError = "Le fichier transmis dépasse la limite autorisée(5Mo)";
 				}
 			}
 			if($userManager->createUser($user)){
@@ -67,38 +67,48 @@ class UserController{
 		
 	}
 
-	function UpdateUser(){
-		$user = new User($_POST);
-		$user->setId($_SESSION['user']->getId());
-		$userManager = new UserManager();
-		if(isset($_FILES['avatar']) AND $_FILES['avatar']['error'] == 0){
-			if($_FILES['avatar']['size'] <= 5000000){
-					$fileInfos = pathinfo($_FILES['avatar']['name']);
-					$fileExtension = $fileInfos['extension'];
-					$allowedExtensions =['png','jpg','jpeg','gif'];
-					if(in_array($fileExtension, $allowedExtensions)){	
-						$rawFilename = ucfirst('user_avatar'. $user->getNickname() . basename($_FILES['avatar']['name']));
-						$filename = preg_replace('/\s+/', '', $rawFilename);
-						move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
-						$user->setAvatar($filename);
-						$previousAvatar = $userManager->getUserAvatar($user->getId());
-						if($previousAvatar != "default.jpg"){
-							unlink('public/img/items/' . $previousPicture);
-						}
+	function updateUser($userId){
+		if($userId == $_SESSION['user']->getId() OR $_SESSION['user']->getStatus() == "admin"){
+			$user = new User($_POST);
+			$user->setId($userId);
+			$userManager = new UserManager();
+			$dbUser = $userManager->getUserById($userId);
+			if(password_verify($user->getPassword(), $dbUser->getPassword())){
+
+				if($_POST['newPassword'] != "" AND $_POST['newPassword'] == $_POST['newPassword2']){
+					$user->setPassword($_POST['newPassword']);
+				}
+
+				if(isset($_FILES['avatar']) AND $_FILES['avatar']['error'] == 0){
+					if($_FILES['avatar']['size'] <= 5000000){
+							$fileInfos = pathinfo($_FILES['avatar']['name']);
+							$fileExtension = $fileInfos['extension'];
+							$allowedExtensions =['png','jpg','jpeg','gif'];
+							if(in_array($fileExtension, $allowedExtensions)){	
+								$rawFilename = ucfirst('user_avatar'. $user->getNickname() . basename($_FILES['avatar']['name']));
+								$filename = preg_replace('/\s+/', '', $rawFilename);
+								move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
+								$user->setAvatar($filename);
+								if($dbUser->getAvatar() != "default.jpg"){
+									unlink('public/img/items/' . $dbUser->getAvatar());
+								}
+							}else{
+								$formError = "Le format du fichier transmis n'est pas autorisé.Formats autorisés: jpg, png, jpeg, gif";
+								require_once'view/profile.php';
+							}
 					}else{
-						$formError = "Le format du fichier transmis n'est pas autorisé.Formats autorisés: jpg, png, jpeg, gif";
+						$formError = "Le fichier transmis dépasse la limite autorisée(5Mo)";
 						require_once'view/profile.php';
 					}
+				}else{
+					$user->setAvatar($dbUser->getAvatar());
+				}
+			$userManager->updateUser($user);
+			header('location:index.php?a=profile&id=' . $user->getId());
 			}else{
-				$formError = "Le fichier transmis dépasse la limite autorisée(1Mo)";
-				require_once'view/profile.php';
+				$formError = "Mot de passe erroné";
 			}
-		}else{
-			$avatar = $userManager->getUserAvatar($user->getId());
-			$user->setAvatar($avatar);
 		}
-		$userManager->updateUser($user);
-		header('locaion:index.php?a=profile&amp;id=' . $user->getId());
 	}
 
 	function deleteAccount($userId){
@@ -120,7 +130,7 @@ class UserController{
 			header("location: index.php?a=signOut");
 		}else{
 			require_once'view/404.php';
-		*/}
+		}
 
 	}
 
@@ -141,4 +151,6 @@ class UserController{
 			}
 		}
 	}
+
+
 }
