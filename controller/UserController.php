@@ -126,9 +126,13 @@ class UserController{
 					unlink("public/img/items/" . $item->getPicture());
 				}
 			}
-
 			$userManager->deleteUser($userId);
-			header("location: index.php?a=signOut");
+
+			if($_SESSION['user']->getStatus() == "admin"){
+				header("location: index.php?a=viewAllMembers");	
+			}else{
+				header("location: index.php?a=signOut");
+			}
 		}else{
 			require_once'view/404.php';
 		}
