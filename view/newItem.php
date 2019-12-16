@@ -15,7 +15,7 @@ ob_start()?>
 	<textarea name="description" id="description" placeholder="Description rapide de votre article" required></textarea>
 
 	<label for="picture" class="inputFileButton">
-		<span id="addFileText">Ajouter une photo de votre article</span>
+		<span id="addFileText">><?= $titleAction;?> une photo de votre article</span>
 		<img class="itemSmallPic " src="#" id="preview" alt=" ">
 	</label>
 	<input type="file" name="picture" id="picture" hidden accept=".png, .gif, .jpg" onchange="itemPicturePreview()">
@@ -37,4 +37,3 @@ ob_start();?>
 endif;
 
 require_once'view/mainTemplate.php';
-

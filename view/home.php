@@ -3,17 +3,25 @@
 $title = "Bienvenue sur le site";
 
 ob_start() ?>
-<div id="maincontent">
+<h1 class="underlined" id="homeTitle">Donnez, échanger ou vendez vos biens devenus inutiles qui encombrent votre intérieur et faites des heureux!</h1>
+<div id="homeContent">
 	
-	<div id="siteHowTo">
-		<h1>Déjà <?= $usersNumber;?> membres ont mis en ligne <?= $itemsNumber;?> objets!</h1>
+	<div id="homeLeftContainer">	
 
+		<h2>Déjà <span><?= $usersNumber;?> membres</span> ont mis en ligne <span><?= $itemsNumber;?> objets!</span> </h2>
+
+
+		<div id="howTo">
+			<h3>Comment ça marche?</h3>
 			<ol>
 				<li><a href="index.php?a=connection">Inscrivez-vous</a> (si ce n'est pas déjà fait) puis <a href="index.php?a=connection">connectez-vous</a>!</li>
-				<li>Cliquez sur "Mon Profil" dans le memu latéral</li>
-				<li>Ajouter vos objets sur votre profil en cliquant sur le <span id="plusIcon">+</span></li>
-				<li>
+				<li>Cliquez sur "Mon Profil" dans le menu latéral</li>
+				<li>Ajouter vos objets sur votre profil en cliquant sur le <span id="icon">+</span></li>
+				<li>Faites votre marché sur la page <a href="index.php?a=market"> Market </a> et trouvez des objets qui vous intéressent</li>
+				<li>Contactez leur propriétaire pour poser des questions, botenirs des informations et donner votre coordonnées pour recevoir votre article chez vous</li>
 			</ol>
+		</div>
+
 	</div>
 
 	<div id="lastItemsAdded">

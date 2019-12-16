@@ -133,5 +133,22 @@ class ItemController{
 		}
 	}
 
+	function showMarket(){
+		$itemManager = new ItemManager();
+		$itemsTotal = $itemManager->countAllItems();
+		$itemsPerPage = 5;
+		$lastPage = ceil(($itemsTotal / $itemsPerPage));
+
+
+		$currentPage = isset($_GET['page'])  ? intval($_GET['page']) : 1;
+
+		if($currentPage <= 0 OR $currentPage > $lastPage){
+			header('location:index.php?a=error');
+		}
+
+		$items = $itemManager->getMarketItems(($currentPage - 1) * $itemsPerPage, $itemsPerPage);
+		require_once'view/market.php';
+	}
+
 
 }

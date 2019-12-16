@@ -43,14 +43,14 @@
 
 	    <footer id="footer">
 	    	<ul>
-	    		<li><a href="#">FAQ</a></li>
-	    		<li><a href="#">Support</a></li>
+	    		<li><a href="index.php#howTo">FAQ</a></li>
+	    		<li><a href="index.php?a=support">Support</a></li>
 	    		<li><a href="#">A propos</a></li>
 	    		<li><a href="#">Jobs</a></li>
 	    	</ul>
 	    	<ul>
 	    		<li>Crée par Clément</li>
-	    		<li><a href="https://github.com/CBo9/Project-IcyLight">Voir le projet sur GitHub</a></li>
+	    		<li><a href="https://github.com/CBo9/Project_TradeMark">Voir le projet sur GitHub</a></li>
 	    	</ul>
 	    </footer>
 	</div>

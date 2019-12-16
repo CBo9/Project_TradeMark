@@ -85,4 +85,16 @@ class ItemManager extends Manager{
 		$count = $data['count'];
 		return $count;
 	}
+
+
+	function getMarketItems($currentPage, $itemsPerPage){
+		$db = $this->dbConnect();
+		$request = $db->prepare("SELECT items.*, users.nickname as ownerNickname FROM items INNER JOIN users ON users.id = items.ownerId  LIMIT $itemsPerPage OFFSET $currentPage");
+		$request->execute();
+		while ($itemData = $request->fetch()) {
+			$item = new Item($itemData);
+			$items[] = $item;
+		}
+		return $items;
+	}
 }

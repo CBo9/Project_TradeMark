@@ -3,7 +3,7 @@
 $title = "Tous les " . $objectType;
 
 ob_start() ?>
-<a href="index.php?a=adminHome" class="backBtn">Retour vers l'accueil</a>
+<a href="index.php?a=adminHome" class="backBtn" style="color:white;">Retour vers l'accueil </a>
 <h1>Tous les <?= $objectType;?></h1>
 <table class="adminTable">
 	
@@ -51,7 +51,7 @@ if(isset($allRequests)):?>
 	<?php endforeach;
 endif;?>
 </table>
-
+<a id="nextPage" class="paginationBtn" href="index.php?a=market&page=<?= $currentPage + 1 ?>">Page suivante</a>
 <?php $content = ob_get_clean();
 
 require_once 'view/adminTemplate.php';

@@ -104,6 +104,7 @@ class UserController{
 					$user->setAvatar($dbUser->getAvatar());
 				}
 			$userManager->updateUser($user);
+			$_SESSION['user'] = $user;
 			header('location:index.php?a=profile&id=' . $user->getId());
 			}else{
 				$formError = "Mot de passe erroné";

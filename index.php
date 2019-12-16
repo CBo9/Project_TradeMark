@@ -29,6 +29,9 @@ if(!empty($_GET)){
             case 'connection':
                 require 'view/connection.php';
                 break;
+            case 'market':
+                $itemController->showMarket();
+                break;
 
             /*------SIGN UP/IN/OUT------*/
             case 'signIn':
