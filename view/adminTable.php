@@ -27,7 +27,7 @@ if (isset($allMembers)):?>
 			<td><?= $member->getFirstName()?></td>
 			<td><img class="smallAvatar" src="public/img/avatars/<?= $member->getAvatar()?>"></td>
 			<td><?= $member->getStatus()?></td>
-			<td><span class="updateBtn">MODIFIER</span><a href="index.php?a=deleteAccount&id=<?= $member->getId()?>" class="deleteBtn">SUPPRIMER</a>
+			<td><a href="index.php?a=adminUpdate&id=<?= $member->getId()?>" class="updateBtn">MODIFIER</a><a href="index.php?a=deleteAccount&id=<?= $member->getId()?>" class="deleteBtn">SUPPRIMER</a>
 		</tr>
 	<?php endforeach;
 endif;
@@ -46,12 +46,11 @@ if(isset($allRequests)):?>
 			<td><?= $request->getUserName()?></td>
 			<td><?= $request->getStartDate()?></td>
 			<td><?= $request->getStatus()?></td>
-			<td><span class="updateBtn">RÉPONDRE</span><span class="deleteBtn">SUPPRIMER</span>
+			<td><a href="index.php?a=viewRequest&reqId=<?= $request->getId()?>" class="updateBtn">RÉPONDRE</a><span class="deleteBtn">SUPPRIMER</span>
 		</tr>
 	<?php endforeach;
 endif;?>
 </table>
-<a id="nextPage" class="paginationBtn" href="index.php?a=market&page=<?= $currentPage + 1 ?>">Page suivante</a>
 <?php $content = ob_get_clean();
 
 require_once 'view/adminTemplate.php';

@@ -14,7 +14,7 @@ ob_start() ?>
 					if($_SESSION['user']->getId() == $message->getSenderId()) : ?>
 						<div class="sendedMessage messageContainer ">
 					<?php else:?> 
-						<div class="messageContainer receivedMessage">
+						<div class="receivedMessage messageContainer">
 					<?php endif;?>
 						<a href="index.php?a=profile&amp;id=<?= $message->getSenderId();?>">
 							<h4><?= $message->getSenderName();?></h4>

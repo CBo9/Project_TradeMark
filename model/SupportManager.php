@@ -20,19 +20,21 @@ class SupportManager extends Manager{
 
 	function getRequest($requestId){
 		$db = $this->dbConnect();
-		$request = $db->prepare("SELECT * FROM support WHERE id = :reqId AND userId = :userId");
-		$request->execute(["reqId"=>$requestId,"userId"=>$_SESSION['user']->getId()]);
-		return $request;
+		$request = $db->prepare("SELECT * FROM support WHERE id = :reqId");
+		$request->execute(["reqId"=>$requestId]);
+		if($requestData = $request->fetch()){
+			$support = new SupportRequest($requestData);
+			return $support;
+		}
 	}
 
 	function getMessages($reqId){
 		$db = $this->dbConnect();
-		$dbRequest = $db->prepare("SELECT supportMessages.*, users.nickname FROM supportMessages INNER JOIN users ON users.id = supportMessages.userId WHERE requestId = :reqId ");
+		$dbRequest = $db->prepare("SELECT supportMessages.*, users.nickname as userName FROM supportMessages INNER JOIN users ON users.id = supportMessages.userId WHERE requestId = :reqId ");
 		$dbRequest->execute(["reqId"=>$reqId]);
 		$nb = 1;
 		while($data = $dbRequest->fetch()){
 			${'message'.$nb} = new SupportMessage($data);
-			${'message'.$nb}->nickname = $data['nickname'];
 			$messages[] = ${'message'.$nb};
 			$nb++;
 		}
@@ -41,8 +43,9 @@ class SupportManager extends Manager{
 	
 	function updateRequest($newStatus,$requestId){
 		$db = $this->dbConnect();
-		$update = $db->prepare('UPDATE support SET status = :status WHERE requestId = :requestId');
-		$update->execute(["status"=>$newStatus,"requestId"=>$requestId]);
+		$update = $db->prepare('UPDATE support SET status = :status WHERE id = :reqId');
+		$update->execute(["status"=>$newStatus,
+						  "reqId"=>$requestId]);
 	}
 
 	function deleteRequest($id){

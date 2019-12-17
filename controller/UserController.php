@@ -5,7 +5,7 @@ class UserController{
 	function signUp(){
 		$user = new User($_POST);
 		$userManager = new UserManager();
-		$user->setAvatar('default.jpg');
+		$user->setAvatar('default.png');
 		$confirmNickname = $userManager->getUserByNick($user);
 		if($nicknameTaken = $confirmNickname->fetch()){
 			$signUpError = "Ce pseudo est déjà utilisé";
@@ -64,7 +64,14 @@ class UserController{
 		}else{
 			require_once'view/404.php';
 		}
-		
+	}
+
+	function viewConnection(){
+		if (isset($_SESSION['user'])) {
+			header('location: index.php?a=profile&id=' . $_SESSION['user']->getId());
+		}else{
+			require_once'view/connection.php';
+		}
 	}
 
 	function updateUser($userId){
@@ -89,25 +96,26 @@ class UserController{
 								$filename = preg_replace('/\s+/', '', $rawFilename);
 								move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
 								$user->setAvatar($filename);
-								if($dbUser->getAvatar() != "default.jpg"){
+								if($dbUser->getAvatar() != "default.png"){
 									unlink('public/img/items/' . $dbUser->getAvatar());
 								}
 							}else{
 								$formError = "Le format du fichier transmis n'est pas autorisé.Formats autorisés: jpg, png, jpeg, gif";
-								require_once'view/profile.php';
+								header('location: index.php?a=myAccount');
 							}
 					}else{
 						$formError = "Le fichier transmis dépasse la limite autorisée(5Mo)";
-						require_once'view/profile.php';
+						header('location: index.php?a=myAccount');
 					}
 				}else{
 					$user->setAvatar($dbUser->getAvatar());
 				}
-			$userManager->updateUser($user);
-			$_SESSION['user'] = $user;
-			header('location:index.php?a=profile&id=' . $user->getId());
+				$userManager->updateUser($user);
+				$_SESSION['user'] = $user;
+				header('location:index.php?a=profile&id=' . $user->getId());
 			}else{
 				$formError = "Mot de passe erroné";
+				header('location: index.php?a=myAccount');
 			}
 		}
 	}
@@ -116,7 +124,7 @@ class UserController{
 		if($userId == $_SESSION['user']->getId() OR $_SESSION['user']->getStatus() == "admin"){
 			$userManager = new userManager();
 			$member = $userManager->getUserById($userId);
-			if($member->getAvatar() != "default.jpg"){
+			if($member->getAvatar() != "default.png"){
 				unlink("public/img/avatars/" . $member->getAvatar());
 			}
 

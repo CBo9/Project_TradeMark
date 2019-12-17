@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="public/css/cssRoboto.css">
     <link rel="stylesheet" href="public/css/style.css" type="text/css">
+    <link rel="stylesheet" href="public/css/media_queries.css" type="text/css">
     <title><?= $title ?></title>
 </head>
 <body id="body">
 <!--barre de navigation-->
-	<div id="container">
+	<div id="containerAdmin">
 	    <nav id="navbar">
 	        <a  href="index.php">ACCUEIL</a>
 	        

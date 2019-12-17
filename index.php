@@ -27,7 +27,7 @@ if(!empty($_GET)){
                 $itemController->showHome();
                 break;
             case 'connection':
-                require 'view/connection.php';
+                $userController->viewConnection();
                 break;
             case 'market':
                 $itemController->showMarket();
@@ -54,6 +54,13 @@ if(!empty($_GET)){
             case 'viewRequest':
                 if(isset($reqId)){
                     $supportController->viewRequest($reqId);
+                }else{
+                    require_once 'view/404.php';
+                }   
+                break;
+            case 'newSupportMessage':
+                if(isset($reqId)){
+                    $supportController->addMessage($reqId);
                 }else{
                     require_once 'view/404.php';
                 }   
@@ -125,6 +132,8 @@ if(!empty($_GET)){
                     require_once 'view/404.php';
                 }
                 break;
+
+            /*------ACCOUNT------*/
             case 'myAccount':
                 $userController->viewAccount();
                 break;
@@ -135,6 +144,7 @@ if(!empty($_GET)){
                     require_once'view/404.php';
                 }
                 break;
+
             /*------ADMIN------*/
             case 'adminHome':
                 $adminController->viewHome();
@@ -145,6 +155,21 @@ if(!empty($_GET)){
             case 'viewAllRequests':
                 $adminController->showAllRequests();
                 break;
+            case 'adminUpdate':
+                if(isset($id)){
+                    $adminController->adminUpdate($id);
+                }else{
+                    require_once'view/404.php';
+                }
+                break;
+            case 'adminUpdateUser':
+                if(isset($id)){
+                    $adminController->updateUser($id);
+                }else{
+                    require_once'view/404.php';
+                }
+                break;
+                
             default:
                 require 'view/404.php';
                 break;

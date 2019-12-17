@@ -1,3 +1,4 @@
+/*------GENERAL-------*/
 $navHeightPadding:50px;
 $navHeight:44+ $navHeightPadding*2  ;
 $footerHeight : 120px;
@@ -38,6 +39,10 @@ $footerHeight : 120px;
 	padding:30px;
 	margin:20px;
 	border-radius:3em;
+	& textarea{
+		height:200px;
+		resize: none;
+	}
 }
 
 
@@ -102,6 +107,12 @@ body {
    padding-bottom: $footerHeight;
 }
 
+#containerAdmin{
+   min-height:100%;
+   position:relative;
+   padding-top:$navHeight ;
+}
+
 #mainContent {
    padding:10px;
 }
@@ -154,7 +165,7 @@ footer {
 	}
 }
 
-
+/*------SUPPORT------*/
 #supportForm{
 	width:1000px;
 	display:grid;
@@ -167,6 +178,7 @@ footer {
 	}
 }
 
+/*-------CONNECTION------*/
 #signUpError,#connectionError{
 	color:red;
 	padding:0.5em;
@@ -180,7 +192,7 @@ footer {
 	50%{opacity:1;}
 }
 
-
+/*-------USER NAV------*/
 $userNavLinks:4;
 $anim-dur: 300ms;
 $anim-delay: $anim-dur / $userNavLinks;
@@ -229,6 +241,8 @@ $anim-delay: $anim-dur / $userNavLinks;
 	position: relative;
 }
 
+
+/*-------PROFILE------*/
 #userProfile{
 	cursor: pointer;
 	user-select:none;
@@ -247,18 +261,14 @@ $anim-delay: $anim-dur / $userNavLinks;
 	flex-grow:1;
 }
 
-$itemPadding:20;
-$itemMargin:20;
-$itemBorder:3;
-$itemsPerRow:3;
 .myItem{
 	border:white 3px solid;
 	margin:20px;
 	padding:20px;
-	width: calc(100% * (1/3) - 86px - 1px) auto;
+	width:min-content;
 	& img{
 		width: auto;
-	} 
+	}
 }
 
 #profileHeader{
@@ -277,6 +287,7 @@ $smallAvatarSize:100px;
 	object-fit: cover;
 	border-radius:$avatarSize/2;
 	user-select: none;
+	background-color:white;
 }
 
 .smallAvatar{
@@ -285,9 +296,10 @@ $smallAvatarSize:100px;
 	object-fit: cover;
 	border-radius:$smallAvatarSize/2;
 	user-select: none;
+	background-color:white;
 }
 
-
+/*-------BUTTONS------*/
 .deleteBtn,.updateBtn, .paginationBtn{
 	color:white;
 	padding:5px;
@@ -360,7 +372,7 @@ $paginationBtnBgColor:#698cd6;
 	padding:50px;
 	width: 33%;
 	align-content:flex-end;
-	height:100%;
+	height:65vh;
 	& #AllMessages{
 		overflow:scroll;
     	overflow-x:hidden;
@@ -402,7 +414,7 @@ $paginationBtnBgColor:#698cd6;
 	}
 }
 
-
+/*-------HOME/MARKET------*/
 .itemSmallPic{
 	width: 100%;
 }
@@ -632,4 +644,15 @@ $addIconHeight:30px;
 .sendedMessage{
 	background-color:#3b3b3b;
 	margin:20px 20px 20px 100px;
+}
+
+#supportRequest{
+	display: flex;
+	justify-content: space-around;
+}
+
+.supportMessage{
+	margin:10px 10px;
+	padding:10px;
+	border-radius:10px;
 }

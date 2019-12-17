@@ -5,6 +5,7 @@ class SupportMessage extends Generic{
 	private $id;
 	private $requestId;
 	private $userId;
+    private $userName;
 	private $message;
 	private $date;
 
@@ -47,6 +48,18 @@ class SupportMessage extends Generic{
     public function setUserId($userId)
     {
         $this->userId = $userId;
+
+        return $this;
+    }
+
+    public function getUserName()
+    {
+        return $this->userName;
+    }
+
+    public function setUserName($userName)
+    {
+        $this->userName = $userName;
 
         return $this;
     }

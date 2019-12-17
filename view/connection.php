@@ -3,7 +3,19 @@
 $title = "Se Connecter/S'Inscrire";
 
 ob_start() ?>
-<div class="container-flex">
+<div class="container-flex" id="connectionPage">
+
+	<form method="post" action="index.php?a=signIn" class="redBgForm" id="signInForm">
+		<h1>Se connecter</h1>
+		<label for="nickname">Pseudo</label>
+		<input type="text" id="nickname" name="nickname" placeholder="Pseudo">
+		<label for="password">Mot de passe</label>
+		<input type="password" id="password" name="password" placeholder="Mot de passe">
+		<input type="submit" value="SE CONNECTER">
+		<?php if(isset($error)):?>
+			<span id="connectionError"><?= $error;?></span>
+		<?php endif;?>
+	</form>
 
 	<form method="post" action="index.php?a=signUp" id ="signUpForm" class="redBgForm" enctype="multipart/form-data" onsubmit="return suubmit()">
 		<h1>S'Inscrire</h1>
@@ -23,7 +35,7 @@ ob_start() ?>
 		<label for="avatar" class="inputFileButton">
 			
 			<span id="addFileText">Ajouter un avatar (optionnel)</span>
-			<img class="avatar " src="public/img/avatars/default.jpg" id="preview" alt=" ">
+			<img class="avatar " src="public/img/avatars/default.png" id="preview" alt=" ">
 		</label>
 		<input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg, .gif"  hidden onchange="avatarPreview()">
 		<span id="emptyAvatar" onclick="deleteFile()">Avatar par défaut</span>
@@ -32,18 +44,6 @@ ob_start() ?>
 		<?php endif;?>
 
 		<input type="submit" value="S'INSCRIRE">
-	</form>
-
-	<form method="post" action="index.php?a=signIn" class="redBgForm" id="signInForm">
-		<h1>Se connecter</h1>
-		<label for="nickname">Pseudo</label>
-		<input type="text" id="nickname" name="nickname" placeholder="Pseudo">
-		<label for="password">Mot de passe</label>
-		<input type="password" id="password" name="password" placeholder="Mot de passe">
-		<input type="submit" value="SE CONNECTER">
-		<?php if(isset($error)):?>
-			<span id="connectionError"><?= $error;?></span>
-		<?php endif;?>
 	</form>
 </div>
 

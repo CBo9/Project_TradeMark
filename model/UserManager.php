@@ -45,6 +45,18 @@ class UserManager extends Manager{
 						  "userId"=>$_SESSION['user']->getId()]);
 	}
 
+	function updateUserNoPassword(User $user){
+		$db = $this->dbConnect();
+		$update = $db->prepare('UPDATE users SET nickname = :nick, firstName = :firstN, lastName = :lastN, email = :email, avatar = :avatar WHERE id = :userId');
+		$update->execute(["nick"=>$user->getNickname(),
+						  "firstN"=>$user->getFirstName(),
+						  "lastN"=>$user->getLastName(),
+						  "email"=>$user->getEmail(),
+						  "avatar"=>$user->getAvatar(),
+						  "userId"=>$user->getId()]);
+	}
+
+
 	function getUserAvatar($userId){
 		$db = $this->dbConnect();
 		$avatar = $db->prepare("SELECT avatar FROM users WHERE id = :userId");
