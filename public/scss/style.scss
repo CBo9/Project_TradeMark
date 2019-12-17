@@ -353,20 +353,20 @@ $paginationBtnBgColor:#698cd6;
 #chatContainer{
 	display: flex;
 	flex-direction: column;
-	background-color:darken(red,20%);
+	background-color:#111111;
+	border:5px solid white;
+	border-radius:15px;
 	margin:auto 33%;
 	padding:50px;
 	width: 33%;
 	align-content:flex-end;
-	height:60vh;
+	height:100%;
 	& #AllMessages{
 		overflow:scroll;
     	overflow-x:hidden;
     	height:100%;
 	}
 	& .messageContainer{
-		background-color:darken(red,50%);
-		margin:20px;
 		padding:20px;
 		border-radius:20px;
 		& a{
@@ -622,4 +622,14 @@ $addIconHeight:30px;
 	display: flex;
 	justify-content: center;
 	margin:10px 0;
+}
+
+.receivedMessage{
+	background-color:#cc163d;
+	margin:20px 100px 20px 20px;
+}
+
+.sendedMessage{
+	background-color:#3b3b3b;
+	margin:20px 20px 20px 100px;
 }

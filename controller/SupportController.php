@@ -19,6 +19,7 @@ class SupportController{
 		$result = $supportManager->getRequest($reqId);
 		if($req = $result->fetch()){
 			$request = new SupportRequest($req);
+			$supportMessages = $supportManager->getMessages($req->getId());
 			require_once'view/request.php';
 		}else{
 			require_once'view/404.php';

@@ -270,19 +270,19 @@ footer {
 #chatContainer {
   display: flex;
   flex-direction: column;
-  background-color: #990000;
+  background-color: #111111;
+  border: 5px solid white;
+  border-radius: 15px;
   margin: auto 33%;
   padding: 50px;
   width: 33%;
   align-content: flex-end;
-  height: 60vh; }
+  height: 100%; }
   #chatContainer #AllMessages {
     overflow: scroll;
     overflow-x: hidden;
     height: 100%; }
   #chatContainer .messageContainer {
-    background-color: black;
-    margin: 20px;
     padding: 20px;
     border-radius: 20px; }
     #chatContainer .messageContainer a {
@@ -483,3 +483,11 @@ footer {
   display: flex;
   justify-content: center;
   margin: 10px 0; }
+
+.receivedMessage {
+  background-color: #cc163d;
+  margin: 20px 100px 20px 20px; }
+
+.sendedMessage {
+  background-color: #3b3b3b;
+  margin: 20px 20px 20px 100px; }

@@ -27,7 +27,7 @@ if (isset($allMembers)):?>
 			<td><?= $member->getFirstName()?></td>
 			<td><img class="smallAvatar" src="public/img/avatars/<?= $member->getAvatar()?>"></td>
 			<td><?= $member->getStatus()?></td>
-			<td><span class="updateBtn">MODIFIER</span><span class="deleteBtn">SUPPRIMER</span>
+			<td><span class="updateBtn">MODIFIER</span><a href="index.php?a=deleteAccount&id=<?= $member->getId()?>" class="deleteBtn">SUPPRIMER</a>
 		</tr>
 	<?php endforeach;
 endif;
