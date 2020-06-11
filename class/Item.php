@@ -43,7 +43,7 @@ class Item extends Generic{
     }
     public function getOwnerNickname()
     {
-        return $this->ownerNickname;
+        return htmlspecialchars($this->ownerNickname);
     }
 
     public function setOwnerNickname($ownerNickname)
@@ -55,7 +55,7 @@ class Item extends Generic{
 
     public function getName()
     {
-        return $this->name;
+        return htmlspecialchars($this->name);
     }
 
     public function setName($name)
@@ -66,7 +66,7 @@ class Item extends Generic{
     }
     public function getDescription()
     {
-        return $this->description;
+        return htmlspecialchars($this->description);
     }
 
     public function setDescription($description)

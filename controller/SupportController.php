@@ -41,9 +41,9 @@ class SupportController{
 				if($_POST['resolved']== 'on'){
 					$request->setStatus('resolved');
 				}else if($_SESSION['user']->getStatus() == 'admin'){
-					$request->setStatus('Waiting for user');
+					$request->setStatus('member');
 				}else if($message->getUserId() == $request->getUserId()){
-					$request->setStatus('Waiting for admin');
+					$request->setStatus('admin');
 				} 
 	
 				$supportManager->createMessage($message);

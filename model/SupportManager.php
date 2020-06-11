@@ -85,7 +85,7 @@ class SupportManager extends Manager{
 
 	function getAllRequests(){
 		$db = $this->dbConnect();
-		$support = $db->prepare('SELECT support.*, users.nickname as userName FROM support INNER JOIN users ON support.userId = users.id ');
+		$support = $db->prepare('SELECT support.*, users.nickname as userName FROM support INNER JOIN users ON support.userId = users.id ORDER BY status ASC');
 		$support->execute();
 		while($requestData = $support->fetch()){
 			$request = new SupportRequest($requestData);

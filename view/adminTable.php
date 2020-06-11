@@ -31,6 +31,8 @@ if (isset($allMembers)):?>
 		</tr>
 	<?php endforeach;
 endif;
+
+
 /*------ SUPPORT TABLE------*/
 if(isset($allRequests)):?>
 	<thead>
@@ -45,11 +47,19 @@ if(isset($allRequests)):?>
 			<td><?= $request->getId()?></td>
 			<td><?= $request->getUserName()?></td>
 			<td><?= $request->getStartDate()?></td>
-			<td><?= $request->getStatus()?></td>
+			<td>
+				<?php if($request->getStatus() != 'resolved'):?>
+					En attente de <?= $request->getStatus()?>
+				<?php else:?>
+					<?= $request->getStatus()?>
+				<?php endif;?>
+				</td>
 			<td><a href="index.php?a=viewRequest&reqId=<?= $request->getId()?>" class="updateBtn">RÉPONDRE</a><span class="deleteBtn">SUPPRIMER</span>
 		</tr>
 	<?php endforeach;
 endif;?>
+
+
 </table>
 <?php $content = ob_get_clean();
 
