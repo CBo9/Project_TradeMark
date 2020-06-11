@@ -18,4 +18,4 @@ ob_start()?>
 <?php
 $content = ob_get_clean();
 
-require'view/adminTemplate.php';
+require$this->viewPath.'adminTemplate.php';

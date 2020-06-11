@@ -2,6 +2,8 @@
 
 class AdminController{
 
+	private $viewPath = "view/admin/";
+
 	function isAdmin(){
 		if(isset($_SESSION['user']) AND $_SESSION['user']->getStatus() == "admin" ){
 			return true;
@@ -21,7 +23,7 @@ class AdminController{
 			$supportManager = new SupportManager();
 			$requestsTotal = $supportManager->countAllRequests();
 			$reqWaitingAdmin = $supportManager->countRequestsByStatus('Waiting for Admin');
-			require_once'view/adminHome.php';
+			require_once $this->viewPath.'adminHome.php';
 		}else{
 			require_once'view/404.php';
 		}
@@ -33,7 +35,7 @@ class AdminController{
 			$allMembers = $userManager->getAllUsers();
 
 			$objectType = "membres";
-			require_once'view/adminTable.php';
+			require_once $this->viewPath.'adminTable.php';
 		}else{
 			require_once'view/404.php';
 		}
@@ -45,7 +47,7 @@ class AdminController{
 			$allRequests = $supportManager->getAllRequests();
 
 			$objectType = "requêtes";
-			require_once'view/adminTable.php';
+			require_once $this->viewPath.'adminTable.php';
 		}else{
 			require_once'view/404.php';
 		}
@@ -56,7 +58,7 @@ class AdminController{
 			$userManager = new UserManager();
 			$user = $userManager->getUserById($userId);
 
-			require_once'view/adminUpdateUser.php';
+			require_once $this->viewPath.'adminUpdateUser.php';
 		}else{
 			require_once'view/404.php';
 		}

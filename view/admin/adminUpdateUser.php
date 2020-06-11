@@ -32,4 +32,4 @@ ob_start();?>
 
 	<?php $content = ob_get_clean();
 
-	require_once'view/adminTemplate.php';
+	require_once $this->viewPath.'adminTemplate.php';
