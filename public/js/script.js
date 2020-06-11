@@ -144,7 +144,7 @@ function chatScroll(){
 function deleteFile(){
 	document.getElementById('emptyAvatar').innerHTML = "Avatar par défaut";
 	document.getElementById('avatar').value="";
-	document.getElementById('preview').src="public/img/avatars/default.png";
+	document.getElementById('preview').src="public/img/avatars/default.jpg";
 }
 
 function deleteAccount(userId){

@@ -5,7 +5,7 @@ class UserController{
 	function signUp(){
 		$user = new User($_POST);
 		$userManager = new UserManager();
-		$user->setAvatar('default.png');
+		$user->setAvatar('default.jpg');
 		$confirmNickname = $userManager->getUserByNick($user);
 		if($nicknameTaken = $confirmNickname->fetch()){
 			$signUpError = "Ce pseudo est déjà utilisé";
@@ -96,7 +96,7 @@ class UserController{
 								$filename = preg_replace('/\s+/', '', $rawFilename);
 								move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
 								$user->setAvatar($filename);
-								if($dbUser->getAvatar() != "default.png"){
+								if($dbUser->getAvatar() != "default.jpg"){
 									unlink('public/img/items/' . $dbUser->getAvatar());
 								}
 							}else{
@@ -124,7 +124,7 @@ class UserController{
 		if($userId == $_SESSION['user']->getId() OR $_SESSION['user']->getStatus() == "admin"){
 			$userManager = new userManager();
 			$member = $userManager->getUserById($userId);
-			if($member->getAvatar() != "default.png"){
+			if($member->getAvatar() != "default.jpg"){
 				unlink("public/img/avatars/" . $member->getAvatar());
 			}
 
