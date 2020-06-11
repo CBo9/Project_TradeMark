@@ -49,7 +49,13 @@ ob_start()?>
 			<div class="request">
 				<a href="index.php?a=viewRequest&reqId=<?= $request->getId();?>"><?= $request->getTitle();?></a>
 				<p>blablabla</p>
-				<p><?= $request->getStatus();?></p>
+				<p>
+					<?php if($request->getStatus() != 'resolved'):?>
+						En attente de <?= $request->getStatus()?>
+					<?php else:?>
+						Résolu
+					<?php endif;?>
+				</p>
 			</div>
 			<?php endforeach;
 		else:?>

@@ -51,9 +51,9 @@ if(isset($allRequests)):?>
 				<?php if($request->getStatus() != 'resolved'):?>
 					En attente de <?= $request->getStatus()?>
 				<?php else:?>
-					<?= $request->getStatus()?>
+					Résolu
 				<?php endif;?>
-				</td>
+			</td>
 			<td><a href="index.php?a=viewRequest&reqId=<?= $request->getId()?>" class="updateBtn">RÉPONDRE</a><span class="deleteBtn">SUPPRIMER</span>
 		</tr>
 	<?php endforeach;
