@@ -31,10 +31,12 @@ ob_start()?>
 		endif;?>
 
 		<?php if($request->getStatus() != 'resolved'):?>
-			<form method="POST" class="redBgForm" action="index.php?a=newSupportMessage&amp;reqId=<?= $request->getId();?>">
+			<form method="POST" class="redBgForm" action="index.php?a=newSupportMessage&amp;reqId=<?= $request->getId();?>" id="supportForm">
 				<h3>Ajouter une réponse</h3>
 				<textarea name="message" placeholder="Écrivez votre message(500 caractères max)"></textarea>
-				<input type="checkbox" id="resolved" name="resolved"><label for="resolved">Marquer comme résolu</label>
+				<div>
+					<input type="checkbox" id="resolved" name="resolved"><label for="resolved">Marquer comme résolu</label>
+				</div>
 				<input type="submit" value="Envoyer">
 			</form>
 		<?php endif;?>

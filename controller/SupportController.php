@@ -17,11 +17,7 @@ class SupportController{
 
 	function viewRequest($reqId){
 		$supportManager = new SupportManager();
-		if($request = $supportManager->getRequest($reqId)){
-			if($request->getUserId == NULL){
-				require_once'view/404.php';
-				exit;
-			}		
+		if( $request = $supportManager->getRequest($reqId) AND isset($_SESSION['user']) ){	
 			if($request->getUserId() == $_SESSION['user']->getId() OR $_SESSION['user']->getStatus() == 'admin'){
 				$messages = $supportManager->getMessages($request->getId());
 				require_once'view/request.php';
