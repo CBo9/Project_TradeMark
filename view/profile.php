@@ -31,7 +31,7 @@ ob_start() ?>
 <?php if(!empty($items)):
 	echo '<div class="container-flex" id="ItemShelf">';
 	 foreach ($items as $item):?>
-		<div class="myItem">
+		<div class="item">
 			<h4><?= $item->getName();?></h4>
 			<?php if($item->getPicture()!= NULL):?>
 				<img src="public/img/items/<?= $item->getPicture();?>" class="itemMiddlePic" alt="pas de photo pour <?= $item->getName();?>">

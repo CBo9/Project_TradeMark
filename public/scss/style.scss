@@ -261,11 +261,12 @@ $anim-delay: $anim-dur / $userNavLinks;
 	flex-grow:1;
 }
 
-.myItem{
+.item{
 	border:white 3px solid;
 	margin:20px;
 	padding:20px;
 	width:min-content;
+	height: max-content;
 	& img{
 		width: auto;
 	}

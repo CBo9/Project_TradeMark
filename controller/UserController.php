@@ -5,7 +5,7 @@ class UserController{
 	function signUp(){
 		$user = new User($_POST);
 		$userManager = new UserManager();
-		$user->setAvatar('default.jpg');
+		$user->setAvatar('default.png');
 		$confirmNickname = $userManager->getUserByNick($user);
 		if($nicknameTaken = $confirmNickname->fetch()){
 			$signUpError = "Ce pseudo est déjà utilisé";
@@ -96,7 +96,7 @@ class UserController{
 								$filename = preg_replace('/\s+/', '', $rawFilename);
 								move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/img/avatars/' . $filename);
 								$user->setAvatar($filename);
-								if($dbUser->getAvatar() != "default.jpg"){
+								if($dbUser->getAvatar() != "default.png"){
 									unlink('public/img/items/' . $dbUser->getAvatar());
 								}
 							}else{

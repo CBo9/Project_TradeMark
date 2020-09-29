@@ -4,7 +4,7 @@ class Manager{
 
 	protected function dbConnect(){
 		try{
-            $pdo = new PDO("mysql:host=localhost; dbname=projectTradeMarket; charset=utf8", 'root', 'mysql');
+            $pdo = new PDO("mysql:host=localhost; dbname=project_TradeMarket; charset=utf8", 'root', 'mysql');
             array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION);
             return $pdo;
         }

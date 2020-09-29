@@ -17,7 +17,7 @@ ob_start() ?>
 				<li><a href="index.php?a=connection">Inscrivez-vous</a> (si ce n'est pas déjà fait) puis <a href="index.php?a=connection">connectez-vous</a>!</li>
 				<li>Cliquez sur "Mon Profil" dans le menu latéral</li>
 				<li>Ajouter vos objets sur votre profil en cliquant sur le <span id="icon">+</span></li>
-				<li>Faites votre marché sur la page <a href="index.php?a=market"> Market </a> et trouvez des objets qui vous intéressent</li>
+				<li>Faites votre marché sur la page <a href="index.php?a=market"> Marché </a> et trouvez des objets qui vous intéressent</li>
 				<li>Contactez leur propriétaire pour poser des questions, botenirs des informations et donner votre coordonnées pour recevoir votre article chez vous</li>
 			</ol>
 		</div>
