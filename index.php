@@ -18,9 +18,18 @@ $chatController = new ChatController();
 $itemController = new ItemController();
 $adminController = new AdminController();
 
+$authorized_get_values = ["a", "reqId", "id", "itemId", "userId"];
+
 /*------- INDEX ROUTERS/TO CONTROLLERS -------*/
 if(!empty($_GET)){
-    extract($_GET);
+
+    //extract-like for specific values
+    foreach($_GET as $key => $value){
+        if( in_array($key, $authorized_get_values) ){
+            $$key = $value;
+        }
+    }
+
     if(isset($a)){
         switch($a){
             case 'home':
